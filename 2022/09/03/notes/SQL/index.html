@@ -1,0 +1,1636 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="sciwee">
+    <meta name="description" content="
+
+一、基础
+二、创建表
+三、修改表
+四、插入
+五、更新
+六、删除
+七、查询
+DISTINCT
+LIMIT
+
+
+八、排序
+九、过滤
+十、通配符
+十一、计算字段
+十二、函数
+汇总
+文本处理
+日期和时间处理
+数值处理
+
+
+十三、分组
+十四、子查">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>sciwee</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">sciwee</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">sciwee</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title"></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-09-03
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <!-- GFM-TOC -->
+<ul>
+<li><a href="#%E4%B8%80%E5%9F%BA%E7%A1%80">一、基础</a></li>
+<li><a href="#%E4%BA%8C%E5%88%9B%E5%BB%BA%E8%A1%A8">二、创建表</a></li>
+<li><a href="#%E4%B8%89%E4%BF%AE%E6%94%B9%E8%A1%A8">三、修改表</a></li>
+<li><a href="#%E5%9B%9B%E6%8F%92%E5%85%A5">四、插入</a></li>
+<li><a href="#%E4%BA%94%E6%9B%B4%E6%96%B0">五、更新</a></li>
+<li><a href="#%E5%85%AD%E5%88%A0%E9%99%A4">六、删除</a></li>
+<li><a href="#%E4%B8%83%E6%9F%A5%E8%AF%A2">七、查询</a><ul>
+<li><a href="#distinct">DISTINCT</a></li>
+<li><a href="#limit">LIMIT</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%AB%E6%8E%92%E5%BA%8F">八、排序</a></li>
+<li><a href="#%E4%B9%9D%E8%BF%87%E6%BB%A4">九、过滤</a></li>
+<li><a href="#%E5%8D%81%E9%80%9A%E9%85%8D%E7%AC%A6">十、通配符</a></li>
+<li><a href="#%E5%8D%81%E4%B8%80%E8%AE%A1%E7%AE%97%E5%AD%97%E6%AE%B5">十一、计算字段</a></li>
+<li><a href="#%E5%8D%81%E4%BA%8C%E5%87%BD%E6%95%B0">十二、函数</a><ul>
+<li><a href="#%E6%B1%87%E6%80%BB">汇总</a></li>
+<li><a href="#%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86">文本处理</a></li>
+<li><a href="#%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86">日期和时间处理</a></li>
+<li><a href="#%E6%95%B0%E5%80%BC%E5%A4%84%E7%90%86">数值处理</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8D%81%E4%B8%89%E5%88%86%E7%BB%84">十三、分组</a></li>
+<li><a href="#%E5%8D%81%E5%9B%9B%E5%AD%90%E6%9F%A5%E8%AF%A2">十四、子查询</a></li>
+<li><a href="#%E5%8D%81%E4%BA%94%E8%BF%9E%E6%8E%A5">十五、连接</a><ul>
+<li><a href="#%E5%86%85%E8%BF%9E%E6%8E%A5">内连接</a></li>
+<li><a href="#%E8%87%AA%E8%BF%9E%E6%8E%A5">自连接</a></li>
+<li><a href="#%E8%87%AA%E7%84%B6%E8%BF%9E%E6%8E%A5">自然连接</a></li>
+<li><a href="#%E5%A4%96%E8%BF%9E%E6%8E%A5">外连接</a></li>
+</ul>
+</li>
+<li><a href="#%E5%8D%81%E5%85%AD%E7%BB%84%E5%90%88%E6%9F%A5%E8%AF%A2">十六、组合查询</a></li>
+<li><a href="#%E5%8D%81%E4%B8%83%E8%A7%86%E5%9B%BE">十七、视图</a></li>
+<li><a href="#%E5%8D%81%E5%85%AB%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B">十八、存储过程</a></li>
+<li><a href="#%E5%8D%81%E4%B9%9D%E6%B8%B8%E6%A0%87">十九、游标</a></li>
+<li><a href="#%E4%BA%8C%E5%8D%81%E8%A7%A6%E5%8F%91%E5%99%A8">二十、触发器</a></li>
+<li><a href="#%E4%BA%8C%E5%8D%81%E4%B8%80%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86">二十一、事务管理</a></li>
+<li><a href="#%E4%BA%8C%E5%8D%81%E4%BA%8C%E5%AD%97%E7%AC%A6%E9%9B%86">二十二、字符集</a></li>
+<li><a href="#%E4%BA%8C%E5%8D%81%E4%B8%89%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86">二十三、权限管理</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99">参考资料</a><!-- GFM-TOC --></li>
+</ul>
+<h1 id="一、基础"><a href="#一、基础" class="headerlink" title="一、基础"></a>一、基础</h1><p>模式定义了数据如何存储、存储什么样的数据以及数据如何分解等信息，数据库和表都有模式。</p>
+<p>主键的值不允许修改，也不允许复用（不能将已经删除的主键值赋给新数据行的主键）。</p>
+<p>SQL（Structured Query Language)，标准 SQL 由 ANSI 标准委员会管理，从而称为 ANSI SQL。各个 DBMS 都有自己的实现，如 PL/SQL、Transact-SQL 等。</p>
+<p>SQL 语句不区分大小写，但是数据库表名、列名和值是否区分依赖于具体的 DBMS 以及配置。</p>
+<p>SQL 支持以下三种注释：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment"># 注释</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span>
+<span class="token keyword">FROM</span> mytable<span class="token punctuation">;</span> <span class="token comment">-- 注释</span>
+<span class="token comment">/* 注释1
+   注释2 */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>数据库创建与使用：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> test<span class="token punctuation">;</span>
+<span class="token keyword">USE</span> test<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h1 id="二、创建表"><a href="#二、创建表" class="headerlink" title="二、创建表"></a>二、创建表</h1><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> mytable <span class="token punctuation">(</span>
+  <span class="token comment"># int 类型，不为空，自增</span>
+  id <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+  <span class="token comment"># int 类型，不可为空，默认值为 1，不为空</span>
+  col1 <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  <span class="token comment"># 变长字符串类型，最长为 45 个字符，可以为空</span>
+  col2 <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  <span class="token comment"># 日期类型，可为空</span>
+  col3 <span class="token keyword">DATE</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+  <span class="token comment"># 设置主键为 id</span>
+  <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token identifier"><span class="token punctuation">`</span>id<span class="token punctuation">`</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="三、修改表"><a href="#三、修改表" class="headerlink" title="三、修改表"></a>三、修改表</h1><p>添加列</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> mytable
+<span class="token keyword">ADD</span> col <span class="token keyword">CHAR</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>删除列</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> mytable
+<span class="token keyword">DROP</span> <span class="token keyword">COLUMN</span> col<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>删除表</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">DROP</span> <span class="token keyword">TABLE</span> mytable<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="四、插入"><a href="#四、插入" class="headerlink" title="四、插入"></a>四、插入</h1><p>普通插入</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> mytable<span class="token punctuation">(</span>col1<span class="token punctuation">,</span> col2<span class="token punctuation">)</span>
+<span class="token keyword">VALUES</span><span class="token punctuation">(</span>val1<span class="token punctuation">,</span> val2<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>插入检索出来的数据</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> mytable1<span class="token punctuation">(</span>col1<span class="token punctuation">,</span> col2<span class="token punctuation">)</span>
+<span class="token keyword">SELECT</span> col1<span class="token punctuation">,</span> col2
+<span class="token keyword">FROM</span> mytable2<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>将一个表的内容插入到一个新表</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> newtable <span class="token keyword">AS</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> mytable<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h1 id="五、更新"><a href="#五、更新" class="headerlink" title="五、更新"></a>五、更新</h1><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">UPDATE</span> mytable
+<span class="token keyword">SET</span> col <span class="token operator">=</span> val
+<span class="token keyword">WHERE</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="六、删除"><a href="#六、删除" class="headerlink" title="六、删除"></a>六、删除</h1><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> mytable
+<span class="token keyword">WHERE</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><strong>TRUNCATE TABLE</strong>   可以清空表，也就是删除所有行。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">TRUNCATE</span> <span class="token keyword">TABLE</span> mytable<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>使用更新和删除操作时一定要用 WHERE 子句，不然会把整张表的数据都破坏。可以先用 SELECT 语句进行测试，防止错误删除。</p>
+<h1 id="七、查询"><a href="#七、查询" class="headerlink" title="七、查询"></a>七、查询</h1><h2 id="DISTINCT"><a href="#DISTINCT" class="headerlink" title="DISTINCT"></a>DISTINCT</h2><p>相同值只会出现一次。它作用于所有列，也就是说所有列的值都相同才算相同。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token keyword">DISTINCT</span> col1<span class="token punctuation">,</span> col2
+<span class="token keyword">FROM</span> mytable<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h2 id="LIMIT"><a href="#LIMIT" class="headerlink" title="LIMIT"></a>LIMIT</h2><p>限制返回的行数。可以有两个参数，第一个参数为起始行，从 0 开始；第二个参数为返回的总行数。</p>
+<p>返回前 5 行：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span>
+<span class="token keyword">FROM</span> mytable
+<span class="token keyword">LIMIT</span> <span class="token number">5</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span>
+<span class="token keyword">FROM</span> mytable
+<span class="token keyword">LIMIT</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>返回第 3 ~ 5 行：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span>
+<span class="token keyword">FROM</span> mytable
+<span class="token keyword">LIMIT</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="八、排序"><a href="#八、排序" class="headerlink" title="八、排序"></a>八、排序</h1><ul>
+<li>  <strong>ASC</strong>  ：升序（默认）</li>
+<li>  <strong>DESC</strong>  ：降序</li>
+</ul>
+<p>可以按多个列进行排序，并且为每个列指定不同的排序方式：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span>
+<span class="token keyword">FROM</span> mytable
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> col1 <span class="token keyword">DESC</span><span class="token punctuation">,</span> col2 <span class="token keyword">ASC</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="九、过滤"><a href="#九、过滤" class="headerlink" title="九、过滤"></a>九、过滤</h1><p>不进行过滤的数据非常大，导致通过网络传输了多余的数据，从而浪费了网络带宽。因此尽量使用 SQL 语句来过滤不必要的数据，而不是传输所有的数据到客户端中然后由客户端进行过滤。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span>
+<span class="token keyword">FROM</span> mytable
+<span class="token keyword">WHERE</span> col <span class="token operator">IS</span> <span class="token boolean">NULL</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>下表显示了 WHERE 子句可用的操作符</p>
+<table>
+<thead>
+<tr>
+<th align="center">操作符</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">=</td>
+<td align="center">等于</td>
+</tr>
+<tr>
+<td align="center">&lt;</td>
+<td align="center">小于</td>
+</tr>
+<tr>
+<td align="center">&gt;</td>
+<td align="center">大于</td>
+</tr>
+<tr>
+<td align="center">&lt;&gt; !=</td>
+<td align="center">不等于</td>
+</tr>
+<tr>
+<td align="center">&lt;= !&gt;</td>
+<td align="center">小于等于</td>
+</tr>
+<tr>
+<td align="center">&gt;= !&lt;</td>
+<td align="center">大于等于</td>
+</tr>
+<tr>
+<td align="center">BETWEEN</td>
+<td align="center">在两个值之间</td>
+</tr>
+<tr>
+<td align="center">IS NULL</td>
+<td align="center">为 NULL 值</td>
+</tr>
+</tbody></table>
+<p>应该注意到，NULL 与 0、空字符串都不同。</p>
+<p><strong>AND 和 OR</strong>   用于连接多个过滤条件。优先处理 AND，当一个过滤表达式涉及到多个 AND 和 OR 时，可以使用 () 来决定优先级，使得优先级关系更清晰。</p>
+<p><strong>IN</strong>   操作符用于匹配一组值，其后也可以接一个 SELECT 子句，从而匹配子查询得到的一组值。</p>
+<p><strong>NOT</strong>   操作符用于否定一个条件。</p>
+<h1 id="十、通配符"><a href="#十、通配符" class="headerlink" title="十、通配符"></a>十、通配符</h1><p>通配符也是用在过滤语句中，但它只能用于文本字段。</p>
+<ul>
+<li><p>  <strong>%</strong>   匹配 &gt;=0 个任意字符；</p>
+</li>
+<li><p>  <strong>_</strong>   匹配 ==1 个任意字符；</p>
+</li>
+<li><p>  <strong>[ ]</strong>   可以匹配集合内的字符，例如 [ab] 将匹配字符 a 或者 b。用脱字符 ^ 可以对其进行否定，也就是不匹配集合内的字符。</p>
+</li>
+</ul>
+<p>使用 Like 来进行通配符匹配。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span>
+<span class="token keyword">FROM</span> mytable
+<span class="token keyword">WHERE</span> col <span class="token operator">LIKE</span> <span class="token string">'[^AB]%'</span><span class="token punctuation">;</span> <span class="token comment">-- 不以 A 和 B 开头的任意文本</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>不要滥用通配符，通配符位于开头处匹配会非常慢。</p>
+<h1 id="十一、计算字段"><a href="#十一、计算字段" class="headerlink" title="十一、计算字段"></a>十一、计算字段</h1><p>在数据库服务器上完成数据的转换和格式化的工作往往比客户端上快得多，并且转换和格式化后的数据量更少的话可以减少网络通信量。</p>
+<p>计算字段通常需要使用   <strong>AS</strong>   来取别名，否则输出的时候字段名为计算表达式。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> col1 <span class="token operator">*</span> col2 <span class="token keyword">AS</span> alias
+<span class="token keyword">FROM</span> mytable<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><strong>CONCAT()</strong>   用于连接两个字段。许多数据库会使用空格把一个值填充为列宽，因此连接的结果会出现一些不必要的空格，使用 <strong>TRIM()</strong> 可以去除首尾空格。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> CONCAT<span class="token punctuation">(</span>TRIM<span class="token punctuation">(</span>col1<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'('</span><span class="token punctuation">,</span> TRIM<span class="token punctuation">(</span>col2<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">')'</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> concat_col
+<span class="token keyword">FROM</span> mytable<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h1 id="十二、函数"><a href="#十二、函数" class="headerlink" title="十二、函数"></a>十二、函数</h1><p>各个 DBMS 的函数都是不相同的，因此不可移植，以下主要是 MySQL 的函数。</p>
+<h2 id="汇总"><a href="#汇总" class="headerlink" title="汇总"></a>汇总</h2><table>
+<thead>
+<tr>
+<th align="center">函 数</th>
+<th align="center">说 明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">AVG()</td>
+<td align="center">返回某列的平均值</td>
+</tr>
+<tr>
+<td align="center">COUNT()</td>
+<td align="center">返回某列的行数</td>
+</tr>
+<tr>
+<td align="center">MAX()</td>
+<td align="center">返回某列的最大值</td>
+</tr>
+<tr>
+<td align="center">MIN()</td>
+<td align="center">返回某列的最小值</td>
+</tr>
+<tr>
+<td align="center">SUM()</td>
+<td align="center">返回某列值之和</td>
+</tr>
+</tbody></table>
+<p>AVG() 会忽略 NULL 行。</p>
+<p>使用 DISTINCT 可以汇总不同的值。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token function">AVG</span><span class="token punctuation">(</span><span class="token keyword">DISTINCT</span> col1<span class="token punctuation">)</span> <span class="token keyword">AS</span> avg_col
+<span class="token keyword">FROM</span> mytable<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h2 id="文本处理"><a href="#文本处理" class="headerlink" title="文本处理"></a>文本处理</h2><table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">LEFT()</td>
+<td align="center">左边的字符</td>
+</tr>
+<tr>
+<td align="center">RIGHT()</td>
+<td align="center">右边的字符</td>
+</tr>
+<tr>
+<td align="center">LOWER()</td>
+<td align="center">转换为小写字符</td>
+</tr>
+<tr>
+<td align="center">UPPER()</td>
+<td align="center">转换为大写字符</td>
+</tr>
+<tr>
+<td align="center">LTRIM()</td>
+<td align="center">去除左边的空格</td>
+</tr>
+<tr>
+<td align="center">RTRIM()</td>
+<td align="center">去除右边的空格</td>
+</tr>
+<tr>
+<td align="center">LENGTH()</td>
+<td align="center">长度</td>
+</tr>
+<tr>
+<td align="center">SOUNDEX()</td>
+<td align="center">转换为语音值</td>
+</tr>
+</tbody></table>
+<p>其中，  <strong>SOUNDEX()</strong>   可以将一个字符串转换为描述其语音表示的字母数字模式。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span>
+<span class="token keyword">FROM</span> mytable
+<span class="token keyword">WHERE</span> SOUNDEX<span class="token punctuation">(</span>col1<span class="token punctuation">)</span> <span class="token operator">=</span> SOUNDEX<span class="token punctuation">(</span><span class="token string">'apple'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="日期和时间处理"><a href="#日期和时间处理" class="headerlink" title="日期和时间处理"></a>日期和时间处理</h2><ul>
+<li>日期格式：YYYY-MM-DD</li>
+<li>时间格式：HH:&lt;zero-width space&gt;MM:SS</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">函 数</th>
+<th align="center">说 明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ADDDATE()</td>
+<td align="center">增加一个日期（天、周等）</td>
+</tr>
+<tr>
+<td align="center">ADDTIME()</td>
+<td align="center">增加一个时间（时、分等）</td>
+</tr>
+<tr>
+<td align="center">CURDATE()</td>
+<td align="center">返回当前日期</td>
+</tr>
+<tr>
+<td align="center">CURTIME()</td>
+<td align="center">返回当前时间</td>
+</tr>
+<tr>
+<td align="center">DATE()</td>
+<td align="center">返回日期时间的日期部分</td>
+</tr>
+<tr>
+<td align="center">DATEDIFF()</td>
+<td align="center">计算两个日期之差</td>
+</tr>
+<tr>
+<td align="center">DATE_ADD()</td>
+<td align="center">高度灵活的日期运算函数</td>
+</tr>
+<tr>
+<td align="center">DATE_FORMAT()</td>
+<td align="center">返回一个格式化的日期或时间串</td>
+</tr>
+<tr>
+<td align="center">DAY()</td>
+<td align="center">返回一个日期的天数部分</td>
+</tr>
+<tr>
+<td align="center">DAYOFWEEK()</td>
+<td align="center">对于一个日期，返回对应的星期几</td>
+</tr>
+<tr>
+<td align="center">HOUR()</td>
+<td align="center">返回一个时间的小时部分</td>
+</tr>
+<tr>
+<td align="center">MINUTE()</td>
+<td align="center">返回一个时间的分钟部分</td>
+</tr>
+<tr>
+<td align="center">MONTH()</td>
+<td align="center">返回一个日期的月份部分</td>
+</tr>
+<tr>
+<td align="center">NOW()</td>
+<td align="center">返回当前日期和时间</td>
+</tr>
+<tr>
+<td align="center">SECOND()</td>
+<td align="center">返回一个时间的秒部分</td>
+</tr>
+<tr>
+<td align="center">TIME()</td>
+<td align="center">返回一个日期时间的时间部分</td>
+</tr>
+<tr>
+<td align="center">YEAR()</td>
+<td align="center">返回一个日期的年份部分</td>
+</tr>
+</tbody></table>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">mysql<span class="token operator">></span> <span class="token keyword">SELECT</span> <span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">2018-4-14 20:25:11<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="数值处理"><a href="#数值处理" class="headerlink" title="数值处理"></a>数值处理</h2><table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">SIN()</td>
+<td align="center">正弦</td>
+</tr>
+<tr>
+<td align="center">COS()</td>
+<td align="center">余弦</td>
+</tr>
+<tr>
+<td align="center">TAN()</td>
+<td align="center">正切</td>
+</tr>
+<tr>
+<td align="center">ABS()</td>
+<td align="center">绝对值</td>
+</tr>
+<tr>
+<td align="center">SQRT()</td>
+<td align="center">平方根</td>
+</tr>
+<tr>
+<td align="center">MOD()</td>
+<td align="center">余数</td>
+</tr>
+<tr>
+<td align="center">EXP()</td>
+<td align="center">指数</td>
+</tr>
+<tr>
+<td align="center">PI()</td>
+<td align="center">圆周率</td>
+</tr>
+<tr>
+<td align="center">RAND()</td>
+<td align="center">随机数</td>
+</tr>
+</tbody></table>
+<h1 id="十三、分组"><a href="#十三、分组" class="headerlink" title="十三、分组"></a>十三、分组</h1><p>把具有相同的数据值的行放在同一组中。</p>
+<p>可以对同一分组数据使用汇总函数进行处理，例如求分组数据的平均值等。</p>
+<p>指定的分组字段除了能按该字段进行分组，也会自动按该字段进行排序。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> col<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> num
+<span class="token keyword">FROM</span> mytable
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> col<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>GROUP BY 自动按分组字段进行排序，ORDER BY 也可以按汇总字段来进行排序。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> col<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> num
+<span class="token keyword">FROM</span> mytable
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> col
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> num<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>WHERE 过滤行，HAVING 过滤分组，行过滤应当先于分组过滤。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> col<span class="token punctuation">,</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> num
+<span class="token keyword">FROM</span> mytable
+<span class="token keyword">WHERE</span> col <span class="token operator">></span> <span class="token number">2</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> col
+<span class="token keyword">HAVING</span> num <span class="token operator">>=</span> <span class="token number">2</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>分组规定：</p>
+<ul>
+<li>GROUP BY 子句出现在 WHERE 子句之后，ORDER BY 子句之前；</li>
+<li>除了汇总字段外，SELECT 语句中的每一字段都必须在 GROUP BY 子句中给出；</li>
+<li>NULL 的行会单独分为一组；</li>
+<li>大多数 SQL 实现不支持 GROUP BY 列具有可变长度的数据类型。</li>
+</ul>
+<h1 id="十四、子查询"><a href="#十四、子查询" class="headerlink" title="十四、子查询"></a>十四、子查询</h1><p>子查询中只能返回一个字段的数据。</p>
+<p>可以将子查询的结果作为 WHRER 语句的过滤条件：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span>
+<span class="token keyword">FROM</span> mytable1
+<span class="token keyword">WHERE</span> col1 <span class="token operator">IN</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> col2
+               <span class="token keyword">FROM</span> mytable2<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>下面的语句可以检索出客户的订单数量，子查询语句会对第一个查询检索出的每个客户执行一次：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> cust_name<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span>
+                   <span class="token keyword">FROM</span> Orders
+                   <span class="token keyword">WHERE</span> Orders<span class="token punctuation">.</span>cust_id <span class="token operator">=</span> Customers<span class="token punctuation">.</span>cust_id<span class="token punctuation">)</span>
+                   <span class="token keyword">AS</span> orders_num
+<span class="token keyword">FROM</span> Customers
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> cust_name<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="十五、连接"><a href="#十五、连接" class="headerlink" title="十五、连接"></a>十五、连接</h1><p>连接用于连接多个表，使用 JOIN 关键字，并且条件语句使用 ON 而不是 WHERE。</p>
+<p>连接可以替换子查询，并且比子查询的效率一般会更快。</p>
+<p>可以用 AS 给列名、计算字段和表名取别名，给表名取别名是为了简化 SQL 语句以及连接相同表。</p>
+<h2 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h2><p>内连接又称等值连接，使用 INNER JOIN 关键字。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> A<span class="token punctuation">.</span><span class="token keyword">value</span><span class="token punctuation">,</span> B<span class="token punctuation">.</span><span class="token keyword">value</span>
+<span class="token keyword">FROM</span> tablea <span class="token keyword">AS</span> A <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> tableb <span class="token keyword">AS</span> B
+<span class="token keyword">ON</span> A<span class="token punctuation">.</span><span class="token keyword">key</span> <span class="token operator">=</span> B<span class="token punctuation">.</span><span class="token keyword">key</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>可以不明确使用 INNER JOIN，而使用普通查询并在 WHERE 中将两个表中要连接的列用等值方法连接起来。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> A<span class="token punctuation">.</span><span class="token keyword">value</span><span class="token punctuation">,</span> B<span class="token punctuation">.</span><span class="token keyword">value</span>
+<span class="token keyword">FROM</span> tablea <span class="token keyword">AS</span> A<span class="token punctuation">,</span> tableb <span class="token keyword">AS</span> B
+<span class="token keyword">WHERE</span> A<span class="token punctuation">.</span><span class="token keyword">key</span> <span class="token operator">=</span> B<span class="token punctuation">.</span><span class="token keyword">key</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="自连接"><a href="#自连接" class="headerlink" title="自连接"></a>自连接</h2><p>自连接可以看成内连接的一种，只是连接的表是自身而已。</p>
+<p>一张员工表，包含员工姓名和员工所属部门，要找出与 Jim 处在同一部门的所有员工姓名。</p>
+<p>子查询版本</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> name
+<span class="token keyword">FROM</span> employee
+<span class="token keyword">WHERE</span> department <span class="token operator">=</span> <span class="token punctuation">(</span>
+      <span class="token keyword">SELECT</span> department
+      <span class="token keyword">FROM</span> employee
+      <span class="token keyword">WHERE</span> name <span class="token operator">=</span> <span class="token string">"Jim"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>自连接版本</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> e1<span class="token punctuation">.</span>name
+<span class="token keyword">FROM</span> employee <span class="token keyword">AS</span> e1 <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> employee <span class="token keyword">AS</span> e2
+<span class="token keyword">ON</span> e1<span class="token punctuation">.</span>department <span class="token operator">=</span> e2<span class="token punctuation">.</span>department
+      <span class="token operator">AND</span> e2<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"Jim"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="自然连接"><a href="#自然连接" class="headerlink" title="自然连接"></a>自然连接</h2><p>自然连接是把同名列通过等值测试连接起来的，同名列可以有多个。</p>
+<p>内连接和自然连接的区别：内连接提供连接的列，而自然连接自动连接所有同名列。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> A<span class="token punctuation">.</span><span class="token keyword">value</span><span class="token punctuation">,</span> B<span class="token punctuation">.</span><span class="token keyword">value</span>
+<span class="token keyword">FROM</span> tablea <span class="token keyword">AS</span> A <span class="token keyword">NATURAL</span> <span class="token keyword">JOIN</span> tableb <span class="token keyword">AS</span> B<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h2 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h2><p>外连接保留了没有关联的那些行。分为左外连接，右外连接以及全外连接，左外连接就是保留左表没有关联的行。</p>
+<p>检索所有顾客的订单信息，包括还没有订单信息的顾客。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> Customers<span class="token punctuation">.</span>cust_id<span class="token punctuation">,</span> Customer<span class="token punctuation">.</span>cust_name<span class="token punctuation">,</span> Orders<span class="token punctuation">.</span>order_id
+<span class="token keyword">FROM</span> Customers <span class="token keyword">LEFT</span> <span class="token keyword">OUTER</span> <span class="token keyword">JOIN</span> Orders
+<span class="token keyword">ON</span> Customers<span class="token punctuation">.</span>cust_id <span class="token operator">=</span> Orders<span class="token punctuation">.</span>cust_id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>customers 表：</p>
+<table>
+<thead>
+<tr>
+<th align="center">cust_id</th>
+<th align="center">cust_name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">a</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">b</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">c</td>
+</tr>
+</tbody></table>
+<p>orders 表：</p>
+<table>
+<thead>
+<tr>
+<th align="center">order_id</th>
+<th align="center">cust_id</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">3</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">3</td>
+</tr>
+</tbody></table>
+<p>结果：</p>
+<table>
+<thead>
+<tr>
+<th align="center">cust_id</th>
+<th align="center">cust_name</th>
+<th align="center">order_id</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">a</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">a</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">c</td>
+<td align="center">3</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">c</td>
+<td align="center">4</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">b</td>
+<td align="center">Null</td>
+</tr>
+</tbody></table>
+<h1 id="十六、组合查询"><a href="#十六、组合查询" class="headerlink" title="十六、组合查询"></a>十六、组合查询</h1><p>使用   <strong>UNION</strong>   来组合两个查询，如果第一个查询返回 M 行，第二个查询返回 N 行，那么组合查询的结果一般为 M+N 行。</p>
+<p>每个查询必须包含相同的列、表达式和聚集函数。</p>
+<p>默认会去除相同行，如果需要保留相同行，使用 UNION ALL。</p>
+<p>只能包含一个 ORDER BY 子句，并且必须位于语句的最后。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> col
+<span class="token keyword">FROM</span> mytable
+<span class="token keyword">WHERE</span> col <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">UNION</span>
+<span class="token keyword">SELECT</span> col
+<span class="token keyword">FROM</span> mytable
+<span class="token keyword">WHERE</span> col <span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="十七、视图"><a href="#十七、视图" class="headerlink" title="十七、视图"></a>十七、视图</h1><p>视图是虚拟的表，本身不包含数据，也就不能对其进行索引操作。</p>
+<p>对视图的操作和对普通表的操作一样。</p>
+<p>视图具有如下好处：</p>
+<ul>
+<li>简化复杂的 SQL 操作，比如复杂的连接；</li>
+<li>只使用实际表的一部分数据；</li>
+<li>通过只给用户访问视图的权限，保证数据的安全性；</li>
+<li>更改数据格式和表示。</li>
+</ul>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">VIEW</span> myview <span class="token keyword">AS</span>
+<span class="token keyword">SELECT</span> Concat<span class="token punctuation">(</span>col1<span class="token punctuation">,</span> col2<span class="token punctuation">)</span> <span class="token keyword">AS</span> concat_col<span class="token punctuation">,</span> col3<span class="token operator">*</span>col4 <span class="token keyword">AS</span> compute_col
+<span class="token keyword">FROM</span> mytable
+<span class="token keyword">WHERE</span> col5 <span class="token operator">=</span> val<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="十八、存储过程"><a href="#十八、存储过程" class="headerlink" title="十八、存储过程"></a>十八、存储过程</h1><p>存储过程可以看成是对一系列 SQL 操作的批处理。</p>
+<p>使用存储过程的好处：</p>
+<ul>
+<li>代码封装，保证了一定的安全性；</li>
+<li>代码复用；</li>
+<li>由于是预先编译，因此具有很高的性能。</li>
+</ul>
+<p>命令行中创建存储过程需要自定义分隔符，因为命令行是以 ; 为结束符，而存储过程中也包含了分号，因此会错误把这部分分号当成是结束符，造成语法错误。</p>
+<p>包含 in、out 和 inout 三种参数。</p>
+<p>给变量赋值都需要用 select into 语句。</p>
+<p>每次只能给一个变量赋值，不支持集合的操作。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">delimiter</span> <span class="token comment">//</span>
+
+<span class="token keyword">create</span> <span class="token keyword">procedure</span> myprocedure<span class="token punctuation">(</span> <span class="token keyword">out</span> ret <span class="token keyword">int</span> <span class="token punctuation">)</span>
+    <span class="token keyword">begin</span>
+        <span class="token keyword">declare</span> y <span class="token keyword">int</span><span class="token punctuation">;</span>
+        <span class="token keyword">select</span> <span class="token function">sum</span><span class="token punctuation">(</span>col1<span class="token punctuation">)</span>
+        <span class="token keyword">from</span> mytable
+        <span class="token keyword">into</span> y<span class="token punctuation">;</span>
+        <span class="token keyword">select</span> y<span class="token operator">*</span>y <span class="token keyword">into</span> ret<span class="token punctuation">;</span>
+    <span class="token keyword">end</span> <span class="token comment">//</span>
+
+<span class="token keyword">delimiter</span> <span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">call</span> myprocedure<span class="token punctuation">(</span><span class="token variable">@ret</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">select</span> <span class="token variable">@ret</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h1 id="十九、游标"><a href="#十九、游标" class="headerlink" title="十九、游标"></a>十九、游标</h1><p>在存储过程中使用游标可以对一个结果集进行移动遍历。</p>
+<p>游标主要用于交互式应用，其中用户需要对数据集中的任意行进行浏览和修改。</p>
+<p>使用游标的四个步骤：</p>
+<ol>
+<li>声明游标，这个过程没有实际检索出数据；</li>
+<li>打开游标；</li>
+<li>取出数据；</li>
+<li>关闭游标；</li>
+</ol>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">delimiter</span> <span class="token comment">//</span>
+<span class="token keyword">create</span> <span class="token keyword">procedure</span> myprocedure<span class="token punctuation">(</span><span class="token keyword">out</span> ret <span class="token keyword">int</span><span class="token punctuation">)</span>
+    <span class="token keyword">begin</span>
+        <span class="token keyword">declare</span> done <span class="token keyword">boolean</span> <span class="token keyword">default</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">declare</span> mycursor <span class="token keyword">cursor</span> <span class="token keyword">for</span>
+        <span class="token keyword">select</span> col1 <span class="token keyword">from</span> mytable<span class="token punctuation">;</span>
+        <span class="token comment"># 定义了一个 continue handler，当 sqlstate '02000' 这个条件出现时，会执行 set done = 1</span>
+        <span class="token keyword">declare</span> <span class="token keyword">continue</span> <span class="token keyword">handler</span> <span class="token keyword">for</span> sqlstate <span class="token string">'02000'</span> <span class="token keyword">set</span> done <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">open</span> mycursor<span class="token punctuation">;</span>
+
+        <span class="token keyword">repeat</span>
+            <span class="token keyword">fetch</span> mycursor <span class="token keyword">into</span> ret<span class="token punctuation">;</span>
+            <span class="token keyword">select</span> ret<span class="token punctuation">;</span>
+        until done <span class="token keyword">end</span> <span class="token keyword">repeat</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">close</span> mycursor<span class="token punctuation">;</span>
+    <span class="token keyword">end</span> <span class="token comment">//</span>
+ <span class="token keyword">delimiter</span> <span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="二十、触发器"><a href="#二十、触发器" class="headerlink" title="二十、触发器"></a>二十、触发器</h1><p>触发器会在某个表执行以下语句时而自动执行：DELETE、INSERT、UPDATE。</p>
+<p>触发器必须指定在语句执行之前还是之后自动执行，之前执行使用 BEFORE 关键字，之后执行使用 AFTER 关键字。BEFORE 用于数据验证和净化，AFTER 用于审计跟踪，将修改记录到另外一张表中。</p>
+<p>INSERT 触发器包含一个名为 NEW 的虚拟表。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TRIGGER</span> mytrigger <span class="token keyword">AFTER</span> <span class="token keyword">INSERT</span> <span class="token keyword">ON</span> mytable
+<span class="token keyword">FOR EACH ROW</span> <span class="token keyword">SELECT</span> NEW<span class="token punctuation">.</span>col <span class="token keyword">into</span> <span class="token variable">@result</span><span class="token punctuation">;</span>
+
+<span class="token keyword">SELECT</span> <span class="token variable">@result</span><span class="token punctuation">;</span> <span class="token comment">-- 获取结果</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>DELETE 触发器包含一个名为 OLD 的虚拟表，并且是只读的。</p>
+<p>UPDATE 触发器包含一个名为 NEW 和一个名为 OLD 的虚拟表，其中 NEW 是可以被修改的，而 OLD 是只读的。</p>
+<p>MySQL 不允许在触发器中使用 CALL 语句，也就是不能调用存储过程。</p>
+<h1 id="二十一、事务管理"><a href="#二十一、事务管理" class="headerlink" title="二十一、事务管理"></a>二十一、事务管理</h1><p>基本术语：</p>
+<ul>
+<li>事务（transaction）指一组 SQL 语句；</li>
+<li>回退（rollback）指撤销指定 SQL 语句的过程；</li>
+<li>提交（commit）指将未存储的 SQL 语句结果写入数据库表；</li>
+<li>保留点（savepoint）指事务处理中设置的临时占位符（placeholder），你可以对它发布回退（与回退整个事务处理不同）。</li>
+</ul>
+<p>不能回退 SELECT 语句，回退 SELECT 语句也没意义；也不能回退 CREATE 和 DROP 语句。</p>
+<p>MySQL 的事务提交默认是隐式提交，每执行一条语句就把这条语句当成一个事务然后进行提交。当出现 START TRANSACTION 语句时，会关闭隐式提交；当 COMMIT 或 ROLLBACK 语句执行后，事务会自动关闭，重新恢复隐式提交。</p>
+<p>设置 autocommit 为 0 可以取消自动提交；autocommit 标记是针对每个连接而不是针对服务器的。</p>
+<p>如果没有设置保留点，ROLLBACK 会回退到 START TRANSACTION 语句处；如果设置了保留点，并且在 ROLLBACK 中指定该保留点，则会回退到该保留点。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">START</span> <span class="token keyword">TRANSACTION</span>
+<span class="token comment">// ...</span>
+<span class="token keyword">SAVEPOINT</span> delete1
+<span class="token comment">// ...</span>
+<span class="token keyword">ROLLBACK</span> <span class="token keyword">TO</span> delete1
+<span class="token comment">// ...</span>
+<span class="token keyword">COMMIT</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="二十二、字符集"><a href="#二十二、字符集" class="headerlink" title="二十二、字符集"></a>二十二、字符集</h1><p>基本术语：</p>
+<ul>
+<li>字符集为字母和符号的集合；</li>
+<li>编码为某个字符集成员的内部表示；</li>
+<li>校对字符指定如何比较，主要用于排序和分组。</li>
+</ul>
+<p>除了给表指定字符集和校对外，也可以给列指定：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> mytable
+<span class="token punctuation">(</span>col <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> latin <span class="token keyword">COLLATE</span> latin1_general_ci <span class="token punctuation">)</span>
+<span class="token keyword">DEFAULT</span> <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> hebrew <span class="token keyword">COLLATE</span> hebrew_general_ci<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>可以在排序、分组时指定校对：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span>
+<span class="token keyword">FROM</span> mytable
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> col <span class="token keyword">COLLATE</span> latin1_general_ci<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="二十三、权限管理"><a href="#二十三、权限管理" class="headerlink" title="二十三、权限管理"></a>二十三、权限管理</h1><p>MySQL 的账户信息保存在 mysql 这个数据库中。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">USE</span> mysql<span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">user</span> <span class="token keyword">FROM</span> <span class="token keyword">user</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p><strong>创建账户</strong>  </p>
+<p>新创建的账户没有任何权限。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">USER</span> myuser IDENTIFIED <span class="token keyword">BY</span> <span class="token string">'mypassword'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>修改账户名</strong>  </p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">RENAME</span> <span class="token keyword">USER</span> myuser <span class="token keyword">TO</span> newuser<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>删除账户</strong>  </p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">DROP</span> <span class="token keyword">USER</span> myuser<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>查看权限</strong>  </p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SHOW</span> GRANTS <span class="token keyword">FOR</span> myuser<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>授予权限</strong>  </p>
+<p>账户用 username@host 的形式定义，username@% 使用的是默认主机名。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">GRANT</span> <span class="token keyword">SELECT</span><span class="token punctuation">,</span> <span class="token keyword">INSERT</span> <span class="token keyword">ON</span> mydatabase<span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">TO</span> myuser<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>删除权限</strong>  </p>
+<p>GRANT 和 REVOKE 可在几个层次上控制访问权限：</p>
+<ul>
+<li>整个服务器，使用 GRANT ALL 和 REVOKE ALL；</li>
+<li>整个数据库，使用 ON database.*；</li>
+<li>特定的表，使用 ON database.table；</li>
+<li>特定的列；</li>
+<li>特定的存储过程。</li>
+</ul>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">REVOKE</span> <span class="token keyword">SELECT</span><span class="token punctuation">,</span> <span class="token keyword">INSERT</span> <span class="token keyword">ON</span> mydatabase<span class="token punctuation">.</span><span class="token operator">*</span> <span class="token keyword">FROM</span> myuser<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>更改密码</strong>  </p>
+<p>必须使用 Password() 函数进行加密。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SET</span> PASSWROD <span class="token keyword">FOR</span> myuser <span class="token operator">=</span> Password<span class="token punctuation">(</span><span class="token string">'new_password'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>BenForta. SQL 必知必会 [M]. 人民邮电出版社, 2013.</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/09/03/notes/%E9%9B%86%E7%BE%A4/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-09-03
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sciwee
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/09/03/notes/SQL%20%E8%AF%AD%E6%B3%95/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sciwee
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/about" target="_blank">sciwee</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/liuxingjian" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1394495377@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1394495377" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1394495377" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/yi-12yi" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/people/yi-12yi" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
