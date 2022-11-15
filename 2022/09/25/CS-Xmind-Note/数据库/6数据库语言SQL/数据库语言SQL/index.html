@@ -1,0 +1,1209 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="sciwee">
+    <meta name="description" content="数据库语言SQLSQL的发展1974年，由Boyce和Chamberlin提出1975~1979，IBM San Jose Research Lab的关系数据库管理系统原型System R实施了这种语言SQL-86是第一个SQL标准SQL-">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>sciwee</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">sciwee</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">sciwee</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title"></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-09-25
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="数据库语言SQL"><a href="#数据库语言SQL" class="headerlink" title="数据库语言SQL"></a>数据库语言SQL</h1><h2 id="SQL的发展"><a href="#SQL的发展" class="headerlink" title="SQL的发展"></a>SQL的发展</h2><h3 id="1974年，由Boyce和Chamberlin提出"><a href="#1974年，由Boyce和Chamberlin提出" class="headerlink" title="1974年，由Boyce和Chamberlin提出"></a>1974年，由Boyce和Chamberlin提出</h3><h3 id="1975-1979，IBM-San-Jose-Research-Lab的关系数据库管理系统原型System-R实施了这种语言"><a href="#1975-1979，IBM-San-Jose-Research-Lab的关系数据库管理系统原型System-R实施了这种语言" class="headerlink" title="1975~1979，IBM San Jose Research Lab的关系数据库管理系统原型System R实施了这种语言"></a>1975~1979，IBM San Jose Research Lab的关系数据库管理系统原型System R实施了这种语言</h3><h3 id="SQL-86是第一个SQL标准"><a href="#SQL-86是第一个SQL标准" class="headerlink" title="SQL-86是第一个SQL标准"></a>SQL-86是第一个SQL标准</h3><h3 id="SQL-89、SQL-92-SQL2-、SQL-99-SQL3"><a href="#SQL-89、SQL-92-SQL2-、SQL-99-SQL3" class="headerlink" title="SQL-89、SQL-92(SQL2)、SQL-99(SQL3)"></a>SQL-89、SQL-92(SQL2)、SQL-99(SQL3)</h3><h2 id="非过程化语言"><a href="#非过程化语言" class="headerlink" title="非过程化语言"></a>非过程化语言</h2><h3 id="SQL语言进行数据库操作时，只需要提出“做什么”，不需要指明“怎么做”。“怎么做”是由DBMS来完成"><a href="#SQL语言进行数据库操作时，只需要提出“做什么”，不需要指明“怎么做”。“怎么做”是由DBMS来完成" class="headerlink" title="SQL语言进行数据库操作时，只需要提出“做什么”，不需要指明“怎么做”。“怎么做”是由DBMS来完成"></a>SQL语言进行数据库操作时，只需要提出“做什么”，不需要指明“怎么做”。“怎么做”是由DBMS来完成</h3><h2 id="SQL的形式"><a href="#SQL的形式" class="headerlink" title="SQL的形式"></a>SQL的形式</h2><h3 id="交互式SQL"><a href="#交互式SQL" class="headerlink" title="交互式SQL"></a>交互式SQL</h3><ul>
+<li>一般DBMS都提供联机交互工具</li>
+<li>用户可直接键入SQL命令对数据库进行操作</li>
+<li>由DBMS来进行解释<h3 id="嵌入式SQL"><a href="#嵌入式SQL" class="headerlink" title="嵌入式SQL"></a>嵌入式SQL</h3></li>
+<li>能将SQL语句嵌入到高级语言（宿主语言）</li>
+<li>使应用程序充分利用SQL访问数据库的能力、宿主语言的过程处理能力</li>
+<li>一般需要预编译，将嵌入的SQL语句转化为宿主语言编译器能处理的语句<h2 id="SQL语言主要组成部分"><a href="#SQL语言主要组成部分" class="headerlink" title="SQL语言主要组成部分"></a>SQL语言主要组成部分</h2><h3 id="数据定义语言（DDL，Data-Definition-Language）"><a href="#数据定义语言（DDL，Data-Definition-Language）" class="headerlink" title="数据定义语言（DDL，Data Definition Language）"></a>数据定义语言（DDL，Data Definition Language）</h3></li>
+<li>数据定义语言是指用来定义和管理数据库以及数据库中的各种对象的语句，这些语句包括CREATE、ALTER和DROP等语句。在SQL Server中，数据库对象包括表、视图、触发器、存储过程、规则、缺省、用户自定义的数据类型等。这些对象的创建、修改和删除等都可以通过使用CREATE、ALTER、DROP等语句来完成。</li>
+<li>常见的数据类型<ul>
+<li>字符型：<ul>
+<li><pre><code> 定长字符型 char(n) 由于是定长，所以速度快
+</code></pre>
+</li>
+<li><pre><code> 变长字符型 varchar(n)   
+</code></pre>
+</li>
+</ul>
+</li>
+<li>数值型：<ul>
+<li><pre><code> 整型 int(或integer)   -231~+231
+</code></pre>
+</li>
+<li>短整型 smallint -215~+215的</li>
+<li><pre><code> 浮点型 real、float、double
+</code></pre>
+</li>
+<li><pre><code> 数值型 numeric (p [,d])
+</code></pre>
+</li>
+</ul>
+</li>
+<li>日期／时间型：<ul>
+<li><pre><code> DateTime
+</code></pre>
+</li>
+</ul>
+</li>
+<li>文本和图像型<ul>
+<li> Text：存放大量文本数据。在SQLServer中，Text对象实际为一指针</li>
+<li>Image：存放图形数据<h3 id="数据操纵语言（DML，Data-Manipulation-Language）"><a href="#数据操纵语言（DML，Data-Manipulation-Language）" class="headerlink" title="数据操纵语言（DML，Data Manipulation Language）"></a>数据操纵语言（DML，Data Manipulation Language）</h3></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>数据操纵语言是指用来查询、添加、修改和删除数据库中数据的语句，这些语句包括SELECT、INSERT、UPDATE、DELETE等。在默认情况下，只有sysadmin、dbcreator、db_owner或db_datawriter等角色的成员才有权利执行数据操纵语言。<h3 id="数据控制语言（DCL，Data-Control-Language）"><a href="#数据控制语言（DCL，Data-Control-Language）" class="headerlink" title="数据控制语言（DCL，Data Control Language）"></a>数据控制语言（DCL，Data Control Language）</h3></li>
+<li>数据控制语言（DCL）是用来设置或者更改数据库用户或角色权限的语句，这些语句包括GRANT、REVOKE 、DENY等语句，在默认状态下，只有sysadmin、dbcreator、db_owner或db_securityadmin等角色的成员才有权利执行数据控制语言。<h2 id="SQL语句"><a href="#SQL语句" class="headerlink" title="SQL语句"></a>SQL语句</h2><h3 id="建立表结构-Create"><a href="#建立表结构-Create" class="headerlink" title="建立表结构 Create"></a>建立表结构 Create</h3></li>
+<li>定义基本表的语句格式：</li>
+<li>CREATE TABLE &lt;表名&gt;(&lt;列定义&gt;[{,&lt;列定义&gt;,&lt;表约束&gt;}])</li>
+<li>表名：</li>
+<li>列定义：列名、列数据类型、长度、是否允许空值等。</li>
+<li>定义完整性约束：列约束和表约束</li>
+<li>[CONSTRAINT&lt;约束名&gt;] &lt;约束定义&gt;<h3 id="删除表结构-Drop"><a href="#删除表结构-Drop" class="headerlink" title="删除表结构 Drop"></a>删除表结构 Drop</h3></li>
+<li>用SQL删除关系（表）<ul>
+<li>将整个关系模式（表结构）彻底删除</li>
+<li>表中的数据也将被删除<h3 id="修改表结构-Alter"><a href="#修改表结构-Alter" class="headerlink" title="修改表结构 Alter"></a>修改表结构 Alter</h3></li>
+</ul>
+</li>
+<li>增加表中的属性<ul>
+<li>向已经存在的表中添加属性</li>
+<li>allow null （新添加的属性要允许为空）</li>
+<li>已有的元组中该属性的值被置为Null</li>
+</ul>
+</li>
+<li>修改表中的某属性(某列)<ul>
+<li>修改属性类型或精度</li>
+</ul>
+</li>
+<li>删除表中的某属性(某列)<ul>
+<li>去除属性及相应的数据<h3 id="向表中添加数据-Insert"><a href="#向表中添加数据-Insert" class="headerlink" title="向表中添加数据(Insert)"></a>向表中添加数据(Insert)</h3></li>
+</ul>
+</li>
+<li>数据添加<ul>
+<li>用SQL的插入语句，向数据库表中添加数据</li>
+<li>按关系模式的属性顺序</li>
+<li>按指定的属性顺序，也可以只添加部分属性（非Null属性为必需）<h3 id="数据删除（Delete）"><a href="#数据删除（Delete）" class="headerlink" title="数据删除（Delete）"></a>数据删除（Delete）</h3></li>
+</ul>
+</li>
+<li>只能对整个元组操作，不能只删除某些属性上的值</li>
+<li>只能对一个关系起作用，若要从多个关系中删除元组，则必须对每个关系分别执行删除命令</li>
+<li>删除单个元组</li>
+<li>删除多个元组</li>
+<li>删除整个关系中的所有数据<h3 id="数据更新（Update）"><a href="#数据更新（Update）" class="headerlink" title="数据更新（Update）"></a>数据更新（Update）</h3></li>
+<li>改变符合条件的某个（某些）元组的属性值<h2 id="视-图-VIEW"><a href="#视-图-VIEW" class="headerlink" title="视     图   (VIEW)"></a>视     图   (VIEW)</h2><h3 id="视图是从一个或者多个表或视图中导出的表，其结构和数据是建立在对表的查询基础上的。和真实的表一样，视图也包括几个被定义的数据列和多个数据行，但从本质上讲，这些数据列和数据行来源于其所引用的表。因此，视图不是真实存在的基础表而是一个虚拟表，视图所对应的数据并不实际地以视图结构存储在数据库中，而是存储在视图所引用的表中。"><a href="#视图是从一个或者多个表或视图中导出的表，其结构和数据是建立在对表的查询基础上的。和真实的表一样，视图也包括几个被定义的数据列和多个数据行，但从本质上讲，这些数据列和数据行来源于其所引用的表。因此，视图不是真实存在的基础表而是一个虚拟表，视图所对应的数据并不实际地以视图结构存储在数据库中，而是存储在视图所引用的表中。" class="headerlink" title="视图是从一个或者多个表或视图中导出的表，其结构和数据是建立在对表的查询基础上的。和真实的表一样，视图也包括几个被定义的数据列和多个数据行，但从本质上讲，这些数据列和数据行来源于其所引用的表。因此，视图不是真实存在的基础表而是一个虚拟表，视图所对应的数据并不实际地以视图结构存储在数据库中，而是存储在视图所引用的表中。"></a>视图是从一个或者多个表或视图中导出的表，其结构和数据是建立在对表的查询基础上的。和真实的表一样，视图也包括几个被定义的数据列和多个数据行，但从本质上讲，这些数据列和数据行来源于其所引用的表。因此，视图不是真实存在的基础表而是一个虚拟表，视图所对应的数据并不实际地以视图结构存储在数据库中，而是存储在视图所引用的表中。</h3><h3 id="创建视图"><a href="#创建视图" class="headerlink" title="创建视图"></a>创建视图</h3><h3 id="视图的更新"><a href="#视图的更新" class="headerlink" title="视图的更新"></a>视图的更新</h3><h2 id="数据查询（Select）"><a href="#数据查询（Select）" class="headerlink" title="数据查询（Select）"></a>数据查询（Select）</h2><h3 id="数据查询是数据库应用的核心功能"><a href="#数据查询是数据库应用的核心功能" class="headerlink" title="数据查询是数据库应用的核心功能"></a>数据查询是数据库应用的核心功能</h3><h3 id="Select子句——重复元组"><a href="#Select子句——重复元组" class="headerlink" title="Select子句——重复元组"></a>Select子句——重复元组</h3></li>
+<li>SQL具有包的特性</li>
+<li>Select 子句的缺省情况是保留重复元组（ ALL ），可用 Distinct 去除重复元组</li>
+<li>去除重复元组:费时</li>
+<li>需要临时表的支持<h3 id="Select子句——-与属性列表"><a href="#Select子句——-与属性列表" class="headerlink" title="Select子句—— *与属性列表"></a>Select子句—— *与属性列表</h3></li>
+<li>星号 * 表示所有属性<ul>
+<li>星号 * ：按关系模式中属性的顺序排列</li>
+<li>显式列出属性名：按用户顺序排列<h3 id="Select子句——更名"><a href="#Select子句——更名" class="headerlink" title="Select子句——更名"></a>Select子句——更名</h3></li>
+</ul>
+</li>
+<li>为结果集中的某个属性改名</li>
+<li>使结果集更具可读性<h3 id="Where-子句"><a href="#Where-子句" class="headerlink" title="Where 子句"></a>Where 子句</h3></li>
+<li>查询满足指定条件的元组可以通过Where子句来实现</li>
+<li>使where子句中的逻辑表达式返回True值的元组，是符合要求的元组，将被选择出来</li>
+<li>Where 子句——运算符<ul>
+<li>比较：&lt;、&lt;=、&gt;、&gt;=、=、&lt;&gt; 等</li>
+<li>确定范围：<ul>
+<li>Between  A  and  B、Not Between A and B</li>
+</ul>
+</li>
+<li>确定集合：IN、NOT IN</li>
+<li>字符匹配：LIKE，NOT LIKE</li>
+<li>空值：IS NULL、IS NOT NULL</li>
+<li>多重条件：AND、OR、NOT</li>
+</ul>
+</li>
+<li>Where 子句——Like<ul>
+<li>字符匹配：Like、Not Like</li>
+<li>通配符</li>
+<li>% —— 匹配任意字符串</li>
+<li>_   —— 匹配任意一个字符</li>
+<li>大小写敏感</li>
+</ul>
+</li>
+<li>Where 子句——转义符 escape <h3 id="From-子句"><a href="#From-子句" class="headerlink" title="From 子句"></a>From 子句</h3></li>
+<li>列出将被查询的关系（表）</li>
+<li>From 子句——元组变量<ul>
+<li>为 From 子句中的关系定义元组变量</li>
+<li>方便关系名的引用</li>
+</ul>
+</li>
+<li>连接子句<ul>
+<li>内连接<ul>
+<li>内连接是指包括符合条件的每个表的记录，也称之为全记录操作。</li>
+</ul>
+</li>
+<li>外连接<ul>
+<li>外连接是指把两个表分为左右两个表。右外连接是指连接满足条件右侧表的全部记录。左外连接是指连接满足条件左侧表的全部记录。全外连接是指连接满足条件表的全部记录。</li>
+<li>左外连接</li>
+<li>右外连接</li>
+<li>全外连接<h3 id="Order-By子句"><a href="#Order-By子句" class="headerlink" title="Order By子句"></a>Order By子句</h3></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>指定结果集中元组的排列次序</li>
+<li>耗时</li>
+<li>ASC升序（缺省）、DESC降序<h3 id="子查询（Subquery-）"><a href="#子查询（Subquery-）" class="headerlink" title="子查询（Subquery ）"></a>子查询（Subquery ）</h3></li>
+<li>子查询是嵌套在另一查询中的 Select-From-Where 表达式（Where/Having）</li>
+<li>SQL允许多层嵌套，由内而外地进行分析，子查询的结果作为父查询的查找条件</li>
+<li>可以用多个简单查询来构成复杂查询，以增强SQL的查询能力</li>
+<li>子查询中不使用 Order By 子句，Order By子句只能对最终查询结果进行排序</li>
+<li>子查询——单值比较<ul>
+<li>返回单值的子查询，只返回一行一列</li>
+<li>父查询与单值子查询之间用比较运算符进行连接<ul>
+<li>运算符：&gt;、&gt;=、=、&lt;=、&lt;、 &lt;&gt;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>子查询——多值<ul>
+<li>子查询返回多行一列</li>
+<li>运算符：In、All、Some(或Any)、Exists<ul>
+<li>子查询——多值成员In<ul>
+<li>若值与子查询返回集中的某一个相等，则返回true<ul>
+<li> IN 被用来测试多值中的成员</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>子查询——多值比较 ALL<ul>
+<li>父查询与多值子查询之间的比较用All来连接</li>
+<li>值s比子查询返回集R中的每个都大时，s&gt;All R 为True </li>
+<li>All表示所有</li>
+<li><blockquote>
+<p>all、&lt; all、&lt;=all、&gt;=all、&lt;&gt; all</p>
+</blockquote>
+</li>
+<li>&lt;&gt; all 等价于 not in</li>
+</ul>
+</li>
+<li>子查询——多值比较Some/Any<ul>
+<li>父查询与多值子查询之间的比较需用Some/Any来连接</li>
+<li>值s比子查询返回集R中的某一个都大时返回 Ture<ul>
+<li>s &gt; Some R为True  或 </li>
+<li>s &gt; Any R为True </li>
+</ul>
+</li>
+<li>Some(早期用Any)表示某一个（任意一个）</li>
+<li><blockquote>
+<p>some、&lt; some、&lt;=some、&gt;=some、&lt;&gt; some</p>
+</blockquote>
+</li>
+<li>= some 等价于 in、&lt;&gt; some 不等价于 not in</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>子查询——存在判断Exists<ul>
+<li>Exists + 子查询用来判断该子查询是否返回元组</li>
+<li>当子查询的结果集非空时，Exists为True</li>
+<li>当子查询的结果集为空时，Exists为False</li>
+<li>不关心子查询的具体内容，因此用 Select *</li>
+<li>具有外部引用的子查询，称为相关子查询（Correlated Queries）</li>
+<li>外层元组的属性作为内层子查询的条件<h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3></li>
+</ul>
+</li>
+<li>把一列中的值进行聚合运算，返回单值的函数</li>
+<li>五个预定义的聚合函数<ul>
+<li>平均值：Avg( )</li>
+<li>总和：  Sum( )</li>
+<li>最小值：Min( )</li>
+<li>最大值：Max( )</li>
+<li>计数：  Count( )  返回所选列中不为NULL的数</li>
+</ul>
+</li>
+<li>Group By<ul>
+<li>将查询结果集按某一列或多列的值分组，值相等的为一组，一个分组以一个元组的形式出现</li>
+<li>只有出现在Group By子句中的属性，才可出现在Select子句中</li>
+</ul>
+</li>
+<li>Having<ul>
+<li>针对聚合函数的结果值进行筛选（选择），它作用于分组计算结果集</li>
+<li>跟在Group By子句的后面。</li>
+</ul>
+</li>
+<li>Having 与 Where的区别<ul>
+<li>Where 决定哪些元组被选择参加运算，作用于关系中的元组</li>
+<li>Having 决定哪些分组符合要求，作用于分组</li>
+<li>聚合函数的条件关系必须用Having，Where中不应出现聚合函数</li>
+</ul>
+</li>
+<li>聚合函数对Null的处理<ul>
+<li>Count：不计</li>
+<li>Sum：不将其计入</li>
+<li>Avg：具有 Null 的元组不参与</li>
+<li>Max / Min：不参与<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><h3 id="数据库中的索引与书籍中的索引类似，在一本书中，利用索引可以快速查找所需信息，无须阅读整本书。在数据库中，索引使数据库程序无须对整个表进行扫描，就可以在其中找到所需数据。书中的索引是一个词语列表，其中注明了包含各个词的页码。而数据库中的索引是某个表中一列或者若干列值的集合和相应的指向表中物理标识这些值的数据页的逻辑指针清单"><a href="#数据库中的索引与书籍中的索引类似，在一本书中，利用索引可以快速查找所需信息，无须阅读整本书。在数据库中，索引使数据库程序无须对整个表进行扫描，就可以在其中找到所需数据。书中的索引是一个词语列表，其中注明了包含各个词的页码。而数据库中的索引是某个表中一列或者若干列值的集合和相应的指向表中物理标识这些值的数据页的逻辑指针清单" class="headerlink" title="数据库中的索引与书籍中的索引类似，在一本书中，利用索引可以快速查找所需信息，无须阅读整本书。在数据库中，索引使数据库程序无须对整个表进行扫描，就可以在其中找到所需数据。书中的索引是一个词语列表，其中注明了包含各个词的页码。而数据库中的索引是某个表中一列或者若干列值的集合和相应的指向表中物理标识这些值的数据页的逻辑指针清单"></a>数据库中的索引与书籍中的索引类似，在一本书中，利用索引可以快速查找所需信息，无须阅读整本书。在数据库中，索引使数据库程序无须对整个表进行扫描，就可以在其中找到所需数据。书中的索引是一个词语列表，其中注明了包含各个词的页码。而数据库中的索引是某个表中一列或者若干列值的集合和相应的指向表中物理标识这些值的数据页的逻辑指针清单</h3><h3 id="索引的作用"><a href="#索引的作用" class="headerlink" title="索引的作用"></a>索引的作用</h3></li>
+</ul>
+</li>
+<li>通过创建唯一索引，可以保证数据记录的唯一性。</li>
+<li>可以大大加快数据检索速度。</li>
+<li>可以加速表与表之间的连接，这一点在实现数据的参照完整性方面有特别的意义。</li>
+<li>在使用ORDER BY和GROUP BY子句中进行检索数据时，可以显著减少查询中分组和排序的时间。</li>
+<li>使用索引可以在检索数据的过程中使用优化隐藏器，提高系统性能<h3 id="聚集索引与非聚集索引"><a href="#聚集索引与非聚集索引" class="headerlink" title="聚集索引与非聚集索引"></a>聚集索引与非聚集索引</h3></li>
+<li>聚集索引对表的物理数据页中的数据按列进行排序，然后再重新存储到磁盘上，即聚集索引与数据是混为一体的，它的叶节点中存储的是实际的数据</li>
+<li>非聚集索引具有完全独立于数据行的结构，使用非聚集索引不用将物理数据页中的数据按列排序。非聚集索引的叶节点存储了组成非聚集索引的关键字值和行定位器<h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><h2 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h2><h3 id="主键约束（primary-key-constraint）"><a href="#主键约束（primary-key-constraint）" class="headerlink" title="主键约束（primary key constraint）"></a>主键约束（primary key constraint）</h3><h3 id="唯一性约束（unique-constraint）"><a href="#唯一性约束（unique-constraint）" class="headerlink" title="唯一性约束（unique constraint）"></a>唯一性约束（unique constraint）</h3><h3 id="检查约束（check-constraint）"><a href="#检查约束（check-constraint）" class="headerlink" title="检查约束（check constraint）"></a>检查约束（check constraint）</h3><h3 id="缺省约束（default-constraint）"><a href="#缺省约束（default-constraint）" class="headerlink" title="缺省约束（default constraint）"></a>缺省约束（default constraint）</h3><h3 id="外部键约束（foreign-key-constraint）"><a href="#外部键约束（foreign-key-constraint）" class="headerlink" title="外部键约束（foreign key constraint）"></a>外部键约束（foreign key constraint）</h3><h2 id="SQL-SERVER权限管理"><a href="#SQL-SERVER权限管理" class="headerlink" title="SQL SERVER权限管理"></a>SQL SERVER权限管理</h2><h3 id="SQL-Server权限管理策略"><a href="#SQL-Server权限管理策略" class="headerlink" title="SQL Server权限管理策略"></a>SQL Server权限管理策略</h3></li>
+<li>安全帐户认证 <ul>
+<li>安全帐户认证是用来确认登录SQL Server的用户的登录帐号和密码的正确性，由此来验证其是否具有连接SQL Server的权限。 SQL Server 2000提供了两种确认用户的认证模式：<ul>
+<li>（一）Windows NT认证模式。<ul>
+<li>SQL Server数据库系统通常运行在Windows NT服务器平台上，而NT作为网络操作系统，本身就具备管理登录、验证用户合法性的能力，因此Windows NT认证模式正是利用了这一用户安全性和帐号管理的机制，允许SQL Server也可以使用NT的用户名和口令。在这种模式下，用户只需要通过Windows NT的认证，就可以连接到SQL Server，而SQL Server本身也就不需要管理一套登录数据。</li>
+</ul>
+</li>
+<li>（二）混合认证模式。<ul>
+<li>混合认证模式允许用户使用Windows NT安全性或SQL Server安全性连接到SQL Server，这就意味着用户可以使用他的帐号登录到Windows NT，或者使用他的登录名登录到SQL Server系统。NT的用户既可以使用NT认证，也可以使用SQL Server认证</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>访问许可确认 <ul>
+<li>但是通过认证阶段并不代表用户能够访问SQL Server中的数据，同时他还必须通过许可确认。用户只有在具有访问数据库的权限之后，才能够对服务器上的数据库进行权限许可下的各种操作，这种用户访问数据库权限的设置是通过用户帐号来实现的。<h3 id="用户权限管理"><a href="#用户权限管理" class="headerlink" title="用户权限管理"></a>用户权限管理</h3></li>
+</ul>
+</li>
+<li>服务器登录帐号和用户帐号管理 <ul>
+<li>1.利用企业管理器创建、管理SQL Server登录帐号<ul>
+<li>（１）打开企业管理器，单击需要登录的服务器左边的“+”号，然后展开安全性文件夹。 </li>
+<li>（２）用右键单击登录（login）图标，从快捷菜单中选择新建登录（new login）选项，则出现SQL Server登录属性—新建登录对话框，如图6-2所示。</li>
+<li>（3）在名称编辑框中输入登录名，在身份验证选项栏中选择新建的用户帐号是Windows NT认证模式，还是SQL Server认证模式。 </li>
+<li>（４）选择服务器角色页框。在服务器角色列表框中，列出了系统的固定服务器角色。 </li>
+<li>（５）选择用户映射页框。上面的列表框列出了该帐号可以访问的数据库，单击数据库左边的复选框，表示该用户可以访问相应的数据库以及该帐号在数据库中的用户名。 </li>
+<li>（６）设置完成后，单击“确定”按钮即可完成登录帐号的创建。 </li>
+</ul>
+</li>
+<li>使用SQL 语句创建登录帐号</li>
+<li>2.用户帐号管理 <ul>
+<li>在数据库中，一个用户或工作组取得合法的登录帐号，只表明该帐号通过了Windows NT认证或者SQL Server认证，但不能表明其可以对数据库数据和数据库对象进行某种或者某些操作，只有当他同时拥有了用户权限后，才能够访问数据库。 </li>
+<li>利用企业管理器可以授予SQL Server登录访问数据库的许可权限。使用它可创建一个新数据库用户帐号 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>许可（权限）管理 <ul>
+<li>许可用来指定授权用户可以使用的数据库对象和这些授权用户可以对这些数据库对象执行的操作。用户在登录到SQL Server之后，其用户帐号所归属的NT组或角色所被赋予的许可（权限）决定了该用户能够对哪些数据库对象执行哪种操作以及能够访问、修改哪些数据。在每个数据库中用户的许可独立于用户帐号和用户在数据库中的角色，每个数据库都有自己独立的许可系统，在SQL Server中包括三种类型的许可：即对象许可、语句许可和预定义许可。 <ul>
+<li>三种许可类型<ul>
+<li>1、对象许可<ul>
+<li>表示对特定的数据库对象，即表、视图、字段和存储过程的操作许可，它决定了能对表、视图等数据库对象执行哪些操作。</li>
+</ul>
+</li>
+<li>2、语句许可<ul>
+<li>表示对数据库的操作许可，也就是说，创建数据库或者创建数据库中的其它内容所需要的许可类型称为语句许可。</li>
+</ul>
+</li>
+<li>3、预定义许可<ul>
+<li>是指系统安装以后有些用户和角色不必授权就有的许可。 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>角色管理<ul>
+<li>角色是SQL Server 7.0版本引进的新概念，它代替了以前版本中组的概念。利用角色，SQL Server管理者可以将某些用户设置为某一角色，这样只对角色进行权限设置便可以实现对所有用户权限的设置，大大减少了管理员的工作量。SQL Server提供了用户通常管理工作的预定义服务器角色和数据库角色。<ul>
+<li>1、服务器角色<ul>
+<li>服务器角色是指根据SQL Server的管理任务，以及这些任务相对的重要性等级来把具有SQL Server管理职能的用户划分为不同的用户组，每一组所具有的管理SQL Server的权限都是SQL Server内置的，即不能对其进行添加、修改和删除，只能向其中加入用户或者其他角色。 </li>
+<li>几种常用的固定服务器角色 <ul>
+<li>系统管理员：拥有SQL Server所有的权限许可。</li>
+<li>服务器管理员：管理SQL Server服务器端的设置。</li>
+<li>磁盘管理员：管理磁盘文件。</li>
+<li>进程管理员：管理SQL Server系统进程。</li>
+<li>安全管理员：管理和审核SQL Server系统登录。</li>
+<li>安装管理员：增加、删除连接服务器，建立数据库复制以及管理扩展存储过程。</li>
+<li>数据库创建者：创建数据库，并对数据库进行修改。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>2、数据库角色 <ul>
+<li>数据库角色是为某一用户或某一组用户授予不同级别的管理或访问数据库以及数据库对象的权限，这些权限是数据库专有的，并且还可以使一个用户具有属于同一数据库的多个角色。SQL Server提供了两种类型的数据库角色：即固定的数据库角色和用户自定义的数据库角色。 </li>
+<li>（１）固定的数据库角色<ul>
+<li>public：维护全部默认许可。</li>
+<li>db_owner：数据库的所有者，可以对所拥有的数据库执行任何操作。</li>
+<li>db_accessadmin：可以增加或者删除数据库用户、工作组和角色。</li>
+<li>db_addladmin：可以增加、删除和修改数据库中的任何对象。</li>
+<li>db_securityadmin：执行语句许可和对象许可。</li>
+<li>db_backupoperator：可以备份和恢复数据库。</li>
+<li>db_datareader：能且仅能对数据库中的任何表执行select操作，从而读取所有表的信息。</li>
+<li>db_datawriter：能够增加、修改和删除表中的数据，但不能进行select操作。</li>
+<li>db_denydatareader：不能读取数据库中任何表中的数据。</li>
+<li>db_denydatawriter：不能对数据库中的任何表执行增加、修改和删除数据操作。 </li>
+</ul>
+</li>
+<li>（２）用户自定义角色 <ul>
+<li>创建用户定义的数据库角色就是创建一组用户，这些用户具有相同的一组许可。如果一组用户需要执行在SQL Server中指定的一组操作并且不存在对应的Windows NT组，或者没有管理Windows NT用户帐号的许可，就可以在数据库中建立一个用户自定义的数据库角色。用户自定义的数据库角色有两种类型：即标准角色和应用程序角色。<h3 id="Transaction-SQL-语句"><a href="#Transaction-SQL-语句" class="headerlink" title="Transaction_SQL 语句"></a>Transaction_SQL 语句</h3></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>赋权语句——Grant</li>
+<li>收回权限——Revoke </li>
+<li>收回权限——Deny </li>
+<li>XMind: ZEN - Trial Version*</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/09/25/CS-Xmind-Note/%E6%95%B0%E6%8D%AE%E5%BA%93/7%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/%E5%B9%B6%E5%8F%91%E6%8E%A7%E5%88%B6/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-09-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sciwee
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/09/25/CS-Xmind-Note/%E6%95%B0%E6%8D%AE%E5%BA%93/5%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E7%90%86%E8%AE%BA/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E7%90%86%E8%AE%BA/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sciwee
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/about" target="_blank">sciwee</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/liuxingjian" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1394495377@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1394495377" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1394495377" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/yi-12yi" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/people/yi-12yi" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

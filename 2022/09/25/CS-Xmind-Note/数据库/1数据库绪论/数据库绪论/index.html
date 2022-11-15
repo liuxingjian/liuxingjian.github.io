@@ -1,0 +1,1037 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="sciwee">
+    <meta name="description" content="数据库绪论数据管理的三个阶段人工管理阶段文件系统阶段数据库系统阶段基本术语数据（Data）
+计算机用来描述事物的记录（文字．图形．图像．声音）
+数据的形式本身并不能完全表达其内容，需要经过语义解释。数据与其语义是不可分的数据库（Databa">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>sciwee</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">sciwee</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">sciwee</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title"></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-09-25
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="数据库绪论"><a href="#数据库绪论" class="headerlink" title="数据库绪论"></a>数据库绪论</h1><h2 id="数据管理的三个阶段"><a href="#数据管理的三个阶段" class="headerlink" title="数据管理的三个阶段"></a>数据管理的三个阶段</h2><h3 id="人工管理阶段"><a href="#人工管理阶段" class="headerlink" title="人工管理阶段"></a>人工管理阶段</h3><h3 id="文件系统阶段"><a href="#文件系统阶段" class="headerlink" title="文件系统阶段"></a>文件系统阶段</h3><h3 id="数据库系统阶段"><a href="#数据库系统阶段" class="headerlink" title="数据库系统阶段"></a>数据库系统阶段</h3><h2 id="基本术语"><a href="#基本术语" class="headerlink" title="基本术语"></a>基本术语</h2><h3 id="数据（Data）"><a href="#数据（Data）" class="headerlink" title="数据（Data）"></a>数据（Data）</h3><ul>
+<li>计算机用来描述事物的记录（文字．图形．图像．声音）</li>
+<li>数据的形式本身并不能完全表达其内容，需要经过语义解释。数据与其语义是不可分的<h3 id="数据库（Database，简称DB）"><a href="#数据库（Database，简称DB）" class="headerlink" title="数据库（Database，简称DB）"></a>数据库（Database，简称DB）</h3></li>
+<li>数据库是长期存储在计算机内有结构的大量的共享的数据集合。<h3 id="数据库管理系统（DBMS）"><a href="#数据库管理系统（DBMS）" class="headerlink" title="数据库管理系统（DBMS）"></a>数据库管理系统（DBMS）</h3></li>
+<li>数据库管理系统是位于用户与操作系统之间的一层数据管理软件。</li>
+<li>数据库在建立、运用和维护时由数据库管理系统统一管理、统一控制。</li>
+<li>数据库系统（DBS）<ul>
+<li>数据库系统是指在计算机系统中引入数据库后的系统构成，一般由数据库、数据库管理系统（及其开发工具）、应用系统、数据库管理员和用户构成。 <h3 id="数据冗余度："><a href="#数据冗余度：" class="headerlink" title="数据冗余度："></a>数据冗余度：</h3></li>
+</ul>
+</li>
+<li>指同一数据重复存储时的重复程度。 <h3 id="数据的安全性（Security）"><a href="#数据的安全性（Security）" class="headerlink" title="数据的安全性（Security）"></a>数据的安全性（Security）</h3></li>
+<li>数据的安全性是指保护数据，防止不合法使用数据造成数据的泄密和破坏，使每个用户只能按规定，对某些数据以某些方式进行访问和处理。 <h3 id="数据的完整性（Integrity）"><a href="#数据的完整性（Integrity）" class="headerlink" title="数据的完整性（Integrity）"></a>数据的完整性（Integrity）</h3></li>
+<li>数据的完整性指数据的正确性、有效性和相容性。即将数据控制在有效的范围内，或要求数据之间满足一定的关系。 <h3 id="并发（Concurrency）控制"><a href="#并发（Concurrency）控制" class="headerlink" title="并发（Concurrency）控制"></a>并发（Concurrency）控制</h3></li>
+<li>当多个用户的并发进程同时存取、修改数据库时，可能会发生相互干扰而得到错误的结果并使得数据库的完整性遭到破坏，因此必须对多用户的并发操作加以控制和协调。<h3 id="数据库恢复（Recovery）"><a href="#数据库恢复（Recovery）" class="headerlink" title="数据库恢复（Recovery）"></a>数据库恢复（Recovery）</h3></li>
+<li>计算机系统的硬件故障、软件故障、操作员的失误以及故意的破坏也会影响数据库中数据的正确性，甚至造成数据库部分或全部数据的丢失。DBMS必须具有将数据库从错误状态恢复到某一已知的正确状态（亦称为完整状态或一致状态）的功能。<h2 id="数据库的三要素"><a href="#数据库的三要素" class="headerlink" title="数据库的三要素"></a>数据库的三要素</h2><h3 id="数据（描述事物的符号记录，数据库里面存储的内容）"><a href="#数据（描述事物的符号记录，数据库里面存储的内容）" class="headerlink" title="数据（描述事物的符号记录，数据库里面存储的内容）"></a>数据（描述事物的符号记录，数据库里面存储的内容）</h3><h3 id="存储器（外存，一般是硬盘，数据库的载体）"><a href="#存储器（外存，一般是硬盘，数据库的载体）" class="headerlink" title="存储器（外存，一般是硬盘，数据库的载体）"></a>存储器（外存，一般是硬盘，数据库的载体）</h3><h3 id="数据库管理系统（DBMS，数据库的管理软件）"><a href="#数据库管理系统（DBMS，数据库的管理软件）" class="headerlink" title="数据库管理系统（DBMS，数据库的管理软件）"></a>数据库管理系统（DBMS，数据库的管理软件）</h3><h2 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h2><h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3></li>
+<li>是现实世界特征的模拟和抽象<h3 id="数据模型-1"><a href="#数据模型-1" class="headerlink" title="数据模型"></a>数据模型</h3></li>
+<li>也是一种模型，它是现实世界数据特征的抽象，表示实体以及实体间的联系</li>
+<li>一个用于描述数据、数据间关系、数据语义和数据约束的概念工具的集合<h3 id="两级模型的抽象"><a href="#两级模型的抽象" class="headerlink" title="两级模型的抽象"></a>两级模型的抽象</h3></li>
+<li>一是概念模型<ul>
+<li>（也称信息模型，用于信息世界的建模），它是按用户的观点来对数据和信息建模，主要用于数据库设计。这类模型强调其语义表达能力，要能够较方便、直接地表达应用中的各种语义知识，这类模型应为概念简单、清晰、易于用户理解，是用户和数据库设计人员之间进行交流的语言。</li>
+</ul>
+</li>
+<li>二是数据模型<ul>
+<li>（如层次、网状、关系模型，用于机器世界），它是按计算机系统的观点对数据建模，主要用于DBMS的实现。这类模型通常需要有严格的形式化定义，而且常常会加上一些限制或规定，以便于机器上的实现。还通常有一组严格定义了语法和语义的语言，人们可以使用它来定义、操纵数据库中的数据。<h3 id="数据模型的三要素"><a href="#数据模型的三要素" class="headerlink" title="数据模型的三要素"></a>数据模型的三要素</h3></li>
+</ul>
+</li>
+<li>（1） 数据结构<ul>
+<li>数据结构是所研究的对象类型（Object Type）的集合。这些对象是数据库的组成部分。一般可分为两类：一类是与数据类型、内容、性质有关的对象，如网状模型中的数据项、记录，关系模型中的属性、关系等；一类是与数据之间联系有关的对象，如网状模型中的系型（Set Type）等。</li>
+</ul>
+</li>
+<li>（2） 数据操作<ul>
+<li>数据操作是指对数据库中各种对象（型）的实例（值）允许执行的操作的集合。数据库主要有检索和更新（插入、删除、修改）两大类操作。</li>
+<li> 数据结构是对系统静态特性的描述，数据操作是对系统动态特性的描述。</li>
+</ul>
+</li>
+<li>（3） 数据的约束条件<ul>
+<li>数据的约束条件是完整性规则的集合。完整性规则是给定的数据模型中数据及其联系所具有的制约和依存规则，用以限定符合数据模型的数据状态以及状态的变化，以保证数据的正确、有效、相容。<h3 id="概念模型"><a href="#概念模型" class="headerlink" title="概念模型"></a>概念模型</h3></li>
+</ul>
+</li>
+<li>实体（Entity）<ul>
+<li>客观存在并可相互区别的事物称为实体。实体可以是具体的人、事、物，也可以是抽象的概念或联系，如学生、部门、课程、银行帐户、选课、订货、演出、比赛等。</li>
+</ul>
+</li>
+<li>属性（Attribute）<ul>
+<li>实体所具有的某一特性称为属性。如学生实体可以由学号、姓名、性别、出生年月、系、入学时间等属性组成</li>
+</ul>
+</li>
+<li>码（关键字，Key）<ul>
+<li>唯一标识实体的（最小的）属性集称为码。例如学号学生实体的码</li>
+</ul>
+</li>
+<li>域（Domain）<ul>
+<li>属性的取值范围称为该属性的域。例如学号的域为8位整数，姓名的域为字符串集合，，性别的域为（男，女）。</li>
+</ul>
+</li>
+<li>实体型（Entity Type）<ul>
+<li>具有相同属性的实体必然具有共同的特征和性质。用实体名及其属性名集合来抽象和刻划同类实体，称为实体型。例如：学生（学号，姓名，性别，出生年月，系，入学时间）</li>
+</ul>
+</li>
+<li>实体集（Entity Set）<ul>
+<li>同型实体的集合称为实体集。例如，全体学生就是一个实体集。</li>
+</ul>
+</li>
+<li>联系（Relationship）<ul>
+<li>在现实世界中，事物内部以及事物之间是有联系的，这些联系在信息世界中反映为实体（型）内部的联系和实体（型）之间的联系。〖组成实体的各属性之间以及不同实体集之间的联系〗<h2 id="联系的种类"><a href="#联系的种类" class="headerlink" title="联系的种类"></a>联系的种类</h2><h3 id="1对1联系"><a href="#1对1联系" class="headerlink" title="1对1联系"></a>1对1联系</h3></li>
+</ul>
+</li>
+<li>定义：若对于实体集A中的每一个实体，实体集B中至多有一个实体与之联系，反之亦然，则称实体集A与实体集B具有一对一联系，记为1:1。<h3 id="1对多联系"><a href="#1对多联系" class="headerlink" title="1对多联系"></a>1对多联系</h3></li>
+<li>定义：若对于实体集A中的每一个实体，实体集B中有n个实体(n≥0)与之联系，反之，对于对于实体集B中的每一个实体，实体集A中至多只有一个实体与之联系，则称实体集A与实体集B具有一对多联系，记为1:n<h3 id="多对多联系"><a href="#多对多联系" class="headerlink" title="多对多联系"></a>多对多联系</h3></li>
+<li>定义：若对于实体集A中的每一个实体，实体集B中有n个实体(n≥0)与之联系，反之，对于对于实体集B中的每一个实体，实体集A中也有m个实体(m≥0)与之联系，则称实体集A与实体集B具有多对多联系，记为m:n<h2 id="概念模型的表示方法"><a href="#概念模型的表示方法" class="headerlink" title="概念模型的表示方法"></a>概念模型的表示方法</h2><h3 id="E-R图"><a href="#E-R图" class="headerlink" title="E-R图"></a>E-R图</h3></li>
+<li>使用长方形来表示实体型，框内写上实体名</li>
+<li>椭圆型表示实体的属性，并用无向边把实体和属性连接起来</li>
+<li>用菱形表示实体间的联系，菱形框内写上联系名，用无向边把菱形分别与有关实体相连接，在无向边旁标上联系的类型，若实体之间联系也具有属性，则把属性和菱形也用无向边连接上</li>
+<li><h2 id="基本数据模型"><a href="#基本数据模型" class="headerlink" title="基本数据模型"></a>基本数据模型</h2><h3 id="层次模型-Hierarchical-Model"><a href="#层次模型-Hierarchical-Model" class="headerlink" title="层次模型(Hierarchical Model)"></a>层次模型(Hierarchical Model)</h3></li>
+<li>最早使用的一种模型</li>
+<li>数据结构是一棵有向树</li>
+<li>特点<ul>
+<li>(1) 有且仅有一个结点无双亲，该结点称为根结点。</li>
+<li>(2) 其他结点有且只有一个双亲<h3 id="网状模型-Network-Model"><a href="#网状模型-Network-Model" class="headerlink" title="网状模型(Network Model)"></a>网状模型(Network Model)</h3></li>
+</ul>
+</li>
+<li>数据结构是一个有向图</li>
+<li>特点<ul>
+<li>（1）有一个以上的结点没有双亲</li>
+<li>（2）结点可以有多于一个的双亲</li>
+</ul>
+</li>
+<li>能表示实体之间的多种复杂联系<h3 id="关系模型-Relational-Model"><a href="#关系模型-Relational-Model" class="headerlink" title="关系模型(Relational Model)"></a>关系模型(Relational Model)</h3></li>
+<li>关系模型是用二维表格结构来表示实体及实体之间的联系的模型</li>
+<li>数据结构是一个“二维表框架”组成的集合</li>
+<li>关系模型概念简单,清晰,用户易懂易用,有严格的数学基础</li>
+<li>大多数数据库系统都是关系型的</li>
+<li>主要术语<ul>
+<li>关系：一个关系对应于我们平常讲的一张表</li>
+<li>元组：表中的一行称为一个元组</li>
+<li>属性：表中的一列称为属性，每列的名称为属性名</li>
+<li>主码：表中的某个属性组，它们的值唯一的标识一个元组</li>
+<li>域：属性的取值范围</li>
+<li>分量：元组中的一个属性值</li>
+<li>关系模式：对关系的描述，用关系名（属性名1，属性名2，…，属性名n）来表示</li>
+</ul>
+</li>
+<li>特点<ul>
+<li><ol>
+<li>概念单一：</li>
+</ol>
+<ul>
+<li>实体或实体之间的联系都用关系表示</li>
+<li>用户的观点里，数据的逻辑结构就是表</li>
+</ul>
+</li>
+<li><ol start="2">
+<li>关系必须是规范化的关系</li>
+</ol>
+<ul>
+<li>指在关系模型中，每一个关系模式要满足一定的要求或者称为规范条件</li>
+<li>其最基本的要求是每一个分量是一个不可分的数据项，也就是说，不允许表中还有表。</li>
+</ul>
+</li>
+<li><ol start="3">
+<li>用户对数据的检索操作不过是从原来的表中得到一张新的表</li>
+</ol>
+<ul>
+<li>在用户眼中，无论是原始数据还是结果数据，都是同一种数据结构——二维表。</li>
+<li>数据操作是集合操作，即操作对象和操作结果都是若干元组的集合，而不象非关系模型中那样单记录的操作方式。</li>
+<li>把存取路径向用户隐藏起来，提高了数据的独立性。<h2 id="数据库系统的体系结构"><a href="#数据库系统的体系结构" class="headerlink" title="数据库系统的体系结构"></a>数据库系统的体系结构</h2><h3 id="三层模式：外模式、模式、内模式"><a href="#三层模式：外模式、模式、内模式" class="headerlink" title="三层模式：外模式、模式、内模式"></a>三层模式：外模式、模式、内模式</h3></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>外模式<ul>
+<li>又称为用户模式，是数据库用户和数据库系统的接口，是数据库用户的数据视图，是数据库用户可以看见和使用的局部数据的逻辑结构和特征的描述</li>
+<li>一个数据库通常都有多个外模式。一个应用程序只能使用一个外模式，但同一外模式可为多个应用程序所用</li>
+</ul>
+</li>
+<li>模式<ul>
+<li>可细分为概念模式和逻辑模式，是所有数据库用户的公共数据视图，是数据库中全部数据的逻辑结构和特征的描述。 </li>
+<li><pre><code>•一个数据库只有一个模式。模式不但要描述数据的逻辑结构，还要描述数据之间的联系、数据的完整性、安全性要求。 
+</code></pre>
+</li>
+</ul>
+</li>
+<li>内模式<ul>
+<li>又称为存储模式，是数据库物理结构和存储方式的描述，是数据在数据库内部的表示方式。 </li>
+<li><pre><code>•一个数据库只有一个内模式。内模式并不涉及物理记录，也不涉及硬件设备。
+</code></pre>
+<h3 id="•二层映象功能：外模式-模式映象和模式-内模式映象"><a href="#•二层映象功能：外模式-模式映象和模式-内模式映象" class="headerlink" title="•二层映象功能：外模式/模式映象和模式/内模式映象"></a>•二层映象功能：外模式/模式映象和模式/内模式映象</h3></li>
+</ul>
+</li>
+<li>三层模式关系<ul>
+<li>数据库模式是数据库的核心和关键，外模式通常是模式的子集。数据按外模式的描述提供给用户，按内模式的描述存储在硬盘上，而模式介于外、内模式之间，既不涉及外部的访问，也不涉及内部的存储，从而起到隔离作用，有利于保持数据的独立性，内模式依赖于全局逻辑结构，但可以独立于具体的存储设备</li>
+</ul>
+</li>
+<li>映象<ul>
+<li>是一种对应规则，说明映象双方如何进行转换。 </li>
+</ul>
+</li>
+<li>外模式/模式映象<ul>
+<li>作用：把描述局部逻辑结构的外模式与描述全局逻辑结构的模式联系趣来</li>
+<li>当模式改变时，只要对外模式/模式映象做相应的改变，使外模式保持不变，则以外模式为依据的应用程序不受影响，从而保证了数据与程序之间的逻辑独立性，也就是数据的逻辑独立性 </li>
+</ul>
+</li>
+<li>模式/内模式映象<ul>
+<li>作用：把描述全局逻辑结构的模式与描述物理结构的内模式联系起来</li>
+<li>当内模式改变时，比如存储设备或存储方式有所改变，只要模式/内模式映象做相应的改变，使模式保持不变，则应用程序就不受影响，从而保证了数据与程序之的物理独立性。</li>
+</ul>
+</li>
+<li>XMind: ZEN - Trial Version*</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/09/25/CS-Xmind-Note/%E6%95%B0%E6%8D%AE%E5%BA%93/2%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-09-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sciwee
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/09/25/CS-Xmind-Note/%E6%95%B0%E6%8D%AE%E5%BA%93/10%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E6%8A%80%E6%9C%AF/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%81%A2%E5%A4%8D%E6%8A%80%E6%9C%AF/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sciwee
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/about" target="_blank">sciwee</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/liuxingjian" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1394495377@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1394495377" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1394495377" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/yi-12yi" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/people/yi-12yi" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

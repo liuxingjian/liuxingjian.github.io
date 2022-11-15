@@ -1,0 +1,1304 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="sciwee">
+    <meta name="description" content="第六章：输入输出系统I/O系统的功能，模型和接口I/O系统管理的对象是I/O设备和相应的设备控制器。I/O系统的基本功能
+隐藏物理设备的细节
+
+与设备的无关性
+
+提高处理机和I/O设备的利用率
+
+对I/O设备进行控制
+
+确保对设备的正确共享">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>sciwee</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">sciwee</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">sciwee</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title"></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-09-25
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="第六章：输入输出系统"><a href="#第六章：输入输出系统" class="headerlink" title="第六章：输入输出系统"></a>第六章：输入输出系统</h1><h2 id="I-O系统的功能，模型和接口"><a href="#I-O系统的功能，模型和接口" class="headerlink" title="I/O系统的功能，模型和接口"></a>I/O系统的功能，模型和接口</h2><h3 id="I-O系统管理的对象是I-O设备和相应的设备控制器。"><a href="#I-O系统管理的对象是I-O设备和相应的设备控制器。" class="headerlink" title="I/O系统管理的对象是I/O设备和相应的设备控制器。"></a>I/O系统管理的对象是I/O设备和相应的设备控制器。</h3><h3 id="I-O系统的基本功能"><a href="#I-O系统的基本功能" class="headerlink" title="I/O系统的基本功能"></a>I/O系统的基本功能</h3><ul>
+<li><p>隐藏物理设备的细节</p>
+</li>
+<li><p>与设备的无关性</p>
+</li>
+<li><p>提高处理机和I/O设备的利用率</p>
+</li>
+<li><p>对I/O设备进行控制</p>
+</li>
+<li><p>确保对设备的正确共享</p>
+</li>
+<li><p>错误处理</p>
+<h3 id="I-O软件的层次结构"><a href="#I-O软件的层次结构" class="headerlink" title="I/O软件的层次结构"></a>I/O软件的层次结构</h3></li>
+<li><p>用户层I/O软件</p>
+</li>
+<li><p>设备独立性软件</p>
+</li>
+<li><p>设备驱动程序（厂家开发）</p>
+</li>
+<li><p>中断处理程序</p>
+</li>
+<li><p>硬件</p>
+<h3 id="I-O系统的分层"><a href="#I-O系统的分层" class="headerlink" title="I/O系统的分层"></a>I/O系统的分层</h3></li>
+<li><p>中断处理程序</p>
+</li>
+<li><p>设备驱动程序</p>
+</li>
+<li><p>设备独立性软件</p>
+<h3 id="I-O系统接口"><a href="#I-O系统接口" class="headerlink" title="I/O系统接口"></a>I/O系统接口</h3></li>
+<li><p>块设备接口</p>
+<ul>
+<li>指以数据块为单位来组织和传送数据信息的设备</li>
+<li>典型的块设备是磁盘、光盘</li>
+<li>块设备的基本特征<ul>
+<li>①传输速率较高，通常每秒钟为几兆位；</li>
+<li>②它是可寻址的，即可随机地读/写任意一块；</li>
+<li>③磁盘设备的I/O采用DMA方式。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>流设备接口</p>
+<ul>
+<li>又称字符设备指以单个字符为单位来传送数据信息的设备</li>
+<li>这类设备一般用于数据的输入和输出，有交互式终端、打印机</li>
+<li>字符设备的基本特征<ul>
+<li>①传输速率较低；</li>
+<li>②不可寻址，即不能指定输入时的源地址或输出时的目标地址；</li>
+<li>③字符设备的I/O常采用中断驱动方式。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>网络通信接口</p>
+<ul>
+<li>提供网络接入功能，使计算机能通过网络与其他计算机进行通信或上网浏览。<h2 id="I-O设备和设备控制器"><a href="#I-O设备和设备控制器" class="headerlink" title="I/O设备和设备控制器"></a>I/O设备和设备控制器</h2><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3></li>
+</ul>
+</li>
+<li><p>使用特性分</p>
+<ul>
+<li>存储设备</li>
+<li>I/O设备</li>
+</ul>
+</li>
+<li><p>传输速率分</p>
+<ul>
+<li>低速设备（几字节——几百字节）<ul>
+<li>典型的设备有键盘、鼠标、语音的输入</li>
+</ul>
+</li>
+<li>中速设备（数千——数万字节）<ul>
+<li>典型的设备有行式打印机、激光打印机</li>
+</ul>
+</li>
+<li>高速设备（数十万——千兆字节）<ul>
+<li>典型的设备有磁带机、磁盘机、光盘机<h3 id="设备并不是直接与CPU进行通信，而是与设备控制器通信。在设备与设备控制器之间应该有一个接口。"><a href="#设备并不是直接与CPU进行通信，而是与设备控制器通信。在设备与设备控制器之间应该有一个接口。" class="headerlink" title="设备并不是直接与CPU进行通信，而是与设备控制器通信。在设备与设备控制器之间应该有一个接口。"></a>设备并不是直接与CPU进行通信，而是与设备控制器通信。在设备与设备控制器之间应该有一个接口。</h3></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>数据信号：控制器 ←  设备 ←  控制器</p>
+<ul>
+<li>传送数据信号，输入、输出bit</li>
+</ul>
+</li>
+<li><p>控制信号: 控制器  →  设备</p>
+<ul>
+<li>执行读、写操作的信号</li>
+</ul>
+</li>
+<li><p>状态信号：设备当前使用状态</p>
+<h3 id="设备控制器"><a href="#设备控制器" class="headerlink" title="设备控制器"></a>设备控制器</h3></li>
+<li><p>主要功能：控制一个或多个I/O设备，以实现I/O设备和计算机之间的数据交换</p>
+</li>
+<li><p>基本功能</p>
+<ul>
+<li>接收和识别命令<ul>
+<li>控制寄存器、命令译码器</li>
+</ul>
+</li>
+<li>数据交换<ul>
+<li>实现CPU与控制器，控制器与设备间的数据交换</li>
+</ul>
+</li>
+<li>标识和报告设备的状态</li>
+<li>地址识别<ul>
+<li>配置地址译码器，识别不同的设备</li>
+</ul>
+</li>
+<li>数据缓冲区</li>
+<li>差错控制</li>
+</ul>
+</li>
+<li><p>设备控制器的组成</p>
+<ul>
+<li>设备控制器与处理机（CPU）的接口<ul>
+<li>实现CPU与设备控制器之间的通信</li>
+</ul>
+</li>
+<li>设备控制器与设备的接口<ul>
+<li>控制器可连接多个设备</li>
+</ul>
+</li>
+<li>I/O逻辑<ul>
+<li>实现对设备的控制</li>
+<li>CPU利用该逻辑向控制器发送I/O命令</li>
+<li>命令、地址译码<h3 id="内存映像I-O"><a href="#内存映像I-O" class="headerlink" title="内存映像I/O"></a>内存映像I/O</h3></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>驱动程序将抽象I/O命令转换出的一系列具体的命令，参数等数据装入设备控制器的相应寄存器，由控制器来执行这些命令，具体实施对I/O设备的操作</p>
+<h3 id="I-O通道"><a href="#I-O通道" class="headerlink" title="I/O通道"></a>I/O通道</h3></li>
+<li><p>目的：建立独立的I/O操作(组织, 管理和结束)，使由CPU处理的I/O工作转由通道完成（解放CPU，实现并行）</p>
+</li>
+<li><p>什么是I/O通道？</p>
+<ul>
+<li> 是一种特殊的处理机，具有通过执行通道程序完成I/O操作的指令</li>
+<li> 特点：指令单一(局限于与I/O操作相关的指令)，与CPU共享内存</li>
+</ul>
+</li>
+<li><p>基本过程：</p>
+<ul>
+<li>CPU向通道发出I/O指令-&gt;通道接收指令-&gt;从内存取出通道程序处理I/O-&gt;向CPU发出中断</li>
+</ul>
+</li>
+<li><p>通道类型</p>
+<ul>
+<li>字节多路通道<ul>
+<li>低中速连接子通道时间片轮转方式共享主通道</li>
+<li>字节多路通道不适于连接高速设备，这推动了按数组方式进行数据传送的数组选择通道的形成。</li>
+</ul>
+</li>
+<li>数组选择通道<ul>
+<li>这种通道可以连接多台高速设备，但只含有一个分配型子通道，在一段时间内只能执行一道通道程序， 控制一台设备进行数据传送， 直至该设备传送完毕释放该通道。这种通道的利用率很低。</li>
+</ul>
+</li>
+<li>数组多路通道<ul>
+<li>含有多个非分配型子通道，前两种通道的组合，通道利用率较好</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>瓶颈问题</p>
+<ul>
+<li>原因;通道不足</li>
+<li>解决办法：增加设备到主机间的通路，而不增加通道（结果类似RS触发器）<h2 id="中断机构和中断处理程序"><a href="#中断机构和中断处理程序" class="headerlink" title="中断机构和中断处理程序"></a>中断机构和中断处理程序</h2><h3 id="中断"><a href="#中断" class="headerlink" title="中断"></a>中断</h3></li>
+</ul>
+</li>
+<li><p>分类</p>
+<ul>
+<li>中断（外部触发）<ul>
+<li>对外部I/O设备发出的中断信号的响应</li>
+</ul>
+</li>
+<li>陷入（内部原因：除0）<ul>
+<li>由CPU内部事件引起的中断</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>中断向量表（类比51单片机）</p>
+<ul>
+<li>中断程序的入口地址表</li>
+</ul>
+</li>
+<li><p>中断优先级</p>
+<ul>
+<li>对紧急程度不同的中断处理方式</li>
+</ul>
+</li>
+<li><p>对多中断源的处理方式</p>
+<ul>
+<li>屏蔽中断</li>
+<li>嵌套中断<h3 id="中断处理程序"><a href="#中断处理程序" class="headerlink" title="中断处理程序"></a>中断处理程序</h3></li>
+</ul>
+</li>
+<li><p>测定是否有未响应的中断信号</p>
+</li>
+<li><p>保护被中断进程的CPU环境</p>
+</li>
+<li><p>转入相应的设备处理程序</p>
+</li>
+<li><p>中断处理</p>
+</li>
+<li><p>恢复CPU 的现场并退出中断</p>
+<h2 id="设备驱动程序"><a href="#设备驱动程序" class="headerlink" title="设备驱动程序"></a>设备驱动程序</h2><h3 id="是I-O进程与设备控制器之间的通信程序，又由于它常以进程的形式存在，故以后就简称为设备驱动进程"><a href="#是I-O进程与设备控制器之间的通信程序，又由于它常以进程的形式存在，故以后就简称为设备驱动进程" class="headerlink" title="是I/O进程与设备控制器之间的通信程序，又由于它常以进程的形式存在，故以后就简称为设备驱动进程"></a>是I/O进程与设备控制器之间的通信程序，又由于它常以进程的形式存在，故以后就简称为设备驱动进程</h3><h3 id="主要任务是接受来自它上一层的与设备无关软件的抽象请求，并执行这个请求。"><a href="#主要任务是接受来自它上一层的与设备无关软件的抽象请求，并执行这个请求。" class="headerlink" title="主要任务是接受来自它上一层的与设备无关软件的抽象请求，并执行这个请求。"></a>主要任务是接受来自它上一层的与设备无关软件的抽象请求，并执行这个请求。</h3><h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3></li>
+<li><ol>
+<li>接收由I/O进程发来的命令和参数， 并将命令中的抽象要求转换为具体要求。例如，将磁盘块号转换为磁盘的盘面、 磁道号及扇区号。</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>检查用户I/O请求的合法性，了解I/O设备的状态，传递有关参数，设置设备的工作方式。 </li>
+</ol>
+</li>
+<li><ol start="3">
+<li>发出I/O命令，如果设备空闲，便立即启动I/O设备去完成指定的I/O操作；如果设备处于忙碌状态，则将请求者的请求块挂在设备队列上等待。</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>及时响应由控制器或通道发来的中断请求，并根据其中断类型调用相应的中断处理程序进行处理。</li>
+</ol>
+</li>
+<li><ol start="5">
+<li>对于设置有通道的计算机系统，驱动程序还应能够根据用户的I/O请求，自动地构成通道程序。 <h3 id="设备驱动程序的处理过程"><a href="#设备驱动程序的处理过程" class="headerlink" title="设备驱动程序的处理过程"></a>设备驱动程序的处理过程</h3></li>
+</ol>
+</li>
+<li><p>将用户和上层软件对设备控制的抽象要求转换成对设备的具体要求，如对抽象要求的盘块号转换为磁盘的盘面、磁道及扇区。</p>
+</li>
+<li><p>检查I/O请求的合理性。</p>
+</li>
+<li><p>读出和检查设备的状态，确保设备处于就绪态。</p>
+</li>
+<li><p>传送必要的参数，如传送的字节数，数据在主存的首址等。</p>
+</li>
+<li><p>工作方式的设置。</p>
+</li>
+<li><p>启动I/O设备，并检查启动是否成功，如成功则将控制返回给I/O控制系统，在I/O设备忙于传送数据时，该用户进程把自己阻塞，直至中断到来才将它唤醒，而CPU可干别的事。</p>
+<h3 id="对I-O设备的控制方式"><a href="#对I-O设备的控制方式" class="headerlink" title="对I/O设备的控制方式"></a>对I/O设备的控制方式</h3></li>
+<li><p>I/O控制的宗旨</p>
+<ul>
+<li>减少CPU对I/O控制的干预</li>
+<li>充分利用CPU完成数据处理工作</li>
+</ul>
+</li>
+<li><p>I/O 控制方式</p>
+<ul>
+<li>轮询的可编程I/O方式</li>
+<li>中断驱动I/O方式</li>
+<li>DMA控制方式</li>
+<li>I/O通道控制方式<h3 id="DMA控制器组成"><a href="#DMA控制器组成" class="headerlink" title="DMA控制器组成"></a>DMA控制器组成</h3></li>
+</ul>
+</li>
+<li><p>主机与DMA控制器的接口</p>
+</li>
+<li><p>DMA控制器与块设备的接口</p>
+</li>
+<li><p>I/O控制逻辑</p>
+<h2 id="与设备无关的I-O软件"><a href="#与设备无关的I-O软件" class="headerlink" title="与设备无关的I/O软件"></a>与设备无关的I/O软件</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3></li>
+<li><p>含义： 应用程序独立于具体使用的物理设备。</p>
+</li>
+<li><p>驱动程序是一个与硬件(或设备)紧密相关的软件。为实现设备独立性，须在驱动程序上设置一层软件，称为设备独立性软件。</p>
+</li>
+<li><p>设备独立性(Device Independence)的优点</p>
+<ul>
+<li>以物理设备名使用设备</li>
+<li>引入了逻辑设备名</li>
+<li>逻辑设备名称到物理设备名称的转换（易于实现I/O重定向）<h3 id="与设备无关的软件"><a href="#与设备无关的软件" class="headerlink" title="与设备无关的软件"></a>与设备无关的软件</h3></li>
+</ul>
+</li>
+<li><p>设备驱动程序的统一接口</p>
+</li>
+<li><p>缓存管理</p>
+</li>
+<li><p>差错控制</p>
+</li>
+<li><p>对独立设备的分配与回收</p>
+</li>
+<li><p>独立于设备的逻辑数据块</p>
+<h3 id="设备分配中的数据结构"><a href="#设备分配中的数据结构" class="headerlink" title="设备分配中的数据结构"></a>设备分配中的数据结构</h3></li>
+<li><p>设备控制表DCT</p>
+</li>
+<li><p>控制器控制表COCT</p>
+</li>
+<li><p>通道控制表CHCT</p>
+</li>
+<li><p>显然，在有通道的系统中，一个进程只有获得了通道，控制器和所需设备三者之后，才具备了进行I/O操作的物理条件</p>
+</li>
+<li><p>系统设备表SDT</p>
+</li>
+<li><p>逻辑设备表LUT</p>
+</li>
+<li><p>分配的流程，从资源多的到资源紧张的:LUT-&gt;SDT-&gt;DCT-&gt;COCT-&gt;CHCT</p>
+</li>
+<li><p>在申请设备的过程中，根据用户请求的I/O设备的逻辑名，查找逻辑设备和物理设备的映射表；以物理设备为索引，查找SDT，找到该设备所连接的DCT；继续查找与该设备连接的COCT和CHCT，就找到了一条通路。</p>
+<h2 id="用户层的I-O软件"><a href="#用户层的I-O软件" class="headerlink" title="用户层的I/O软件"></a>用户层的I/O软件</h2><h3 id="系统调用与库函数"><a href="#系统调用与库函数" class="headerlink" title="系统调用与库函数"></a>系统调用与库函数</h3></li>
+<li><p>OS向用户提供的所有功能，用户进程都必须通过系统调用来获取</p>
+</li>
+<li><p>在C语言以及UNIX系统中，系统调用（如read）与各系统调用所使用的库函数（如read）之间几乎是一一对应的。而微软的叫Win32API</p>
+<h3 id="假脱机系统（spooling）"><a href="#假脱机系统（spooling）" class="headerlink" title="假脱机系统（spooling）"></a>假脱机系统（spooling）</h3></li>
+<li><p>spooling技术是对脱机输入/输出系统的模拟</p>
+</li>
+<li><p>主要组成</p>
+<ul>
+<li>输入/输出井</li>
+<li>输入/输出缓冲区</li>
+<li>输入/输出进程</li>
+<li>井管理程序</li>
+</ul>
+</li>
+<li><p>特点（体现操作系统的虚拟性）</p>
+<ul>
+<li>提高了I/O的速度<ul>
+<li>对数据所进行的I/O操作，已从对低速设备演变为对输入井或输出井中的数据存取。</li>
+</ul>
+</li>
+<li>将独占设备改造为共享设备<ul>
+<li>实际分给用户进程的不是打印设备，而是共享输出井中的存储区域 </li>
+</ul>
+</li>
+<li>实现了虚拟设备功能<ul>
+<li>将独占设备变成多台独占的虚拟设备。<h2 id="缓冲区管理"><a href="#缓冲区管理" class="headerlink" title="缓冲区管理"></a>缓冲区管理</h2><h3 id="缓冲的引入（原因）"><a href="#缓冲的引入（原因）" class="headerlink" title="缓冲的引入（原因）"></a>缓冲的引入（原因）</h3></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>缓和CPU与I/O设备间速度不匹配的矛盾</p>
+</li>
+<li><p>减少对CPU的中断频率，放宽对CPU中断响应时间的限制</p>
+</li>
+<li><p>提高CPU和I/O设备之间的并行性</p>
+</li>
+<li><p>解决数据粒度不匹配的问题</p>
+<h3 id="单缓冲区"><a href="#单缓冲区" class="headerlink" title="单缓冲区"></a>单缓冲区</h3></li>
+<li><p>即在CPU计算的时候，将数据数据输入到缓冲区(大小取决与T和C的大小)</p>
+<h3 id="双缓冲区"><a href="#双缓冲区" class="headerlink" title="双缓冲区"></a>双缓冲区</h3></li>
+<li><p>即允许CPU连续工作（T不断）</p>
+<h3 id="环形缓冲区（专为生产者和消费者打造）"><a href="#环形缓冲区（专为生产者和消费者打造）" class="headerlink" title="环形缓冲区（专为生产者和消费者打造）"></a>环形缓冲区（专为生产者和消费者打造）</h3></li>
+<li><p>组成</p>
+<ul>
+<li>多个缓冲区</li>
+<li>多个指针</li>
+</ul>
+</li>
+<li><p>使用</p>
+<ul>
+<li>Getbuf过程</li>
+<li>Releasebuf过程</li>
+</ul>
+</li>
+<li><p>同步问题</p>
+<h3 id="缓冲池-理解为更大的缓冲区"><a href="#缓冲池-理解为更大的缓冲区" class="headerlink" title="缓冲池(理解为更大的缓冲区)"></a>缓冲池(理解为更大的缓冲区)</h3></li>
+<li><p>组成</p>
+<ul>
+<li>空白缓冲队列（emq）<ul>
+<li>由空缓冲区链接而成F(emq)，L(emq)分别指向该队列首尾缓冲区</li>
+</ul>
+</li>
+<li>输入队列（inq）<ul>
+<li>由装满输入数据的缓冲区链接而成F(inq)，L(inq)分别指向该队列首尾缓冲区</li>
+</ul>
+</li>
+<li>输出队列（outq）<ul>
+<li>由装满输出数据的缓冲区链接而成F(outq)， L(outq)分别指向该队列首尾缓冲</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Getbuf和Putbuf过程</p>
+<ul>
+<li>收容：缓冲池接收外界数据</li>
+<li>提取：外界从缓冲池获得数据</li>
+</ul>
+</li>
+<li><p>缓冲区工作方式（从缓冲区的角度来看）</p>
+<ul>
+<li>收容输入</li>
+<li>提取输入</li>
+<li>收容输出</li>
+<li>提取输出<h2 id="磁盘存储器的性能和调度"><a href="#磁盘存储器的性能和调度" class="headerlink" title="磁盘存储器的性能和调度"></a>磁盘存储器的性能和调度</h2><h3 id="数据的组织和格式"><a href="#数据的组织和格式" class="headerlink" title="数据的组织和格式"></a>数据的组织和格式</h3><h3 id="磁盘的类型"><a href="#磁盘的类型" class="headerlink" title="磁盘的类型"></a>磁盘的类型</h3></li>
+</ul>
+</li>
+<li><p>固定头磁盘（贵）</p>
+</li>
+<li><p>移动头磁盘</p>
+<h3 id="磁盘访问的时间（关键）"><a href="#磁盘访问的时间（关键）" class="headerlink" title="磁盘访问的时间（关键）"></a>磁盘访问的时间（关键）</h3></li>
+<li><p>寻道时间Ts=m*n+s</p>
+</li>
+<li><p>旋转延迟时间Tr</p>
+</li>
+<li><p>传输时间Tt=b/rN</p>
+</li>
+<li><p>总时间Ta=Ts+1/2r+b/rN</p>
+<h3 id="磁盘的调度算法（掌握图表）"><a href="#磁盘的调度算法（掌握图表）" class="headerlink" title="磁盘的调度算法（掌握图表）"></a>磁盘的调度算法（掌握图表）</h3></li>
+<li><p>先来先服务（FCFS）</p>
+<ul>
+<li>优点：公平，简单</li>
+<li>缺点：可能导致某些进程的请求长期得不到满足</li>
+</ul>
+</li>
+<li><p>最短寻道时间优先（SSTF）</p>
+<ul>
+<li>说明：要求访问的磁道和当前磁头所在的磁道距离最近，以使每次的寻道时间最短</li>
+</ul>
+</li>
+<li><p>扫描算法（SCAN）</p>
+<ul>
+<li>扫描算法不仅考虑到欲访问的磁道与当前磁道间的距离，更优先考虑的是磁道当前的移动方向</li>
+<li>联想电梯的运行</li>
+<li>可防止低优先级进程出现“饥饿”的现象</li>
+</ul>
+</li>
+<li><p>循环扫描算法（CSCAN）</p>
+<ul>
+<li>算法规定磁头单向移动，例如，只是自里向外移动，当磁头移到最外的磁道并访问后，磁头立即返回到最里的欲访问磁道，亦即将最小磁道号紧接着最大磁道号构成循环，进行循环扫描</li>
+</ul>
+</li>
+<li><p>NStepScan算法</p>
+<ul>
+<li>N步SCAN算法是将磁盘请求队列分成若干个长度为N的子队列，磁盘调度将按FCFS算法依次这些子队列。</li>
+</ul>
+</li>
+<li><p>FSCAN算法</p>
+<ul>
+<li>是Nstepscan算法的简化，将磁盘请求队列分成两个子队列</li>
+</ul>
+</li>
+</ul>
+<p><em>XMind: ZEN - Trial Version</em></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/09/25/CS-Xmind-Note/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E5%AD%98%E5%82%A8%E5%99%A8%E7%AE%A1%E7%90%86/%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E5%AD%98%E5%82%A8%E5%99%A8%E7%AE%A1%E7%90%86/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-09-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sciwee
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/09/25/CS-Xmind-Note/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8/%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        
+                        <span class="card-title"></span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            sciwee
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2022</span>
+            
+            <a href="/about" target="_blank">sciwee</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/liuxingjian" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1394495377@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1394495377" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1394495377" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+    <a href="https://www.zhihu.com/people/yi-12yi" class="tooltipped" target="_blank" data-tooltip="关注我的知乎: https://www.zhihu.com/people/yi-12yi" data-position="top" data-delay="50">
+        <i class="fab fa-zhihu1">知</i>
+    </a>
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
