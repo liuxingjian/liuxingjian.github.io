@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="Sciwee">
+    <meta property="og:type" content="website">
+    <meta name="description" content="Sciwee">
+    <meta name="keyword"  content="hexo,Sciwee,Love Code,Java,Aircloud">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        SpringBoot-chapter7 - Sciwee
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Love Code </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Sciwee</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <!-- <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li> -->
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringBoot-%E6%95%B4%E5%90%88%E6%97%A5%E5%BF%97%E7%BB%84%E4%BB%B6"><span class="toc-text">SpringBoot 整合日志组件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AD%E5%BB%BAELK%E8%BF%90%E8%A1%8C%E7%8E%AF%E5%A2%83"><span class="toc-text">搭建ELK运行环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Boot%E6%95%B4%E5%90%88ELK%E5%B9%B3%E5%8F%B0"><span class="toc-text">Spring Boot整合ELK平台</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Love Code </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        SpringBoot-chapter7
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2023-02-10 18:00:13</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#SpringBoot" title="SpringBoot">SpringBoot</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="SpringBoot-整合日志组件"><a href="#SpringBoot-整合日志组件" class="headerlink" title="SpringBoot 整合日志组件"></a>SpringBoot 整合日志组件</h1><span id="more"></span>
+<p>Spring Boot整合logback输出日志<br>logback—sping.xml 配置文件<br>输出日志顺序 TRACE&lt;DEBUG&lt;INFO&lt;WARN&lt;ERROR<br>为每个线程设置唯一标识，方便追踪问题<br>格式化日志文件名，方便排查问题<br>log_%d(yyyy-mm-dd).log 一天生成一次</p>
+<h2 id="搭建ELK运行环境"><a href="#搭建ELK运行环境" class="headerlink" title="搭建ELK运行环境"></a>搭建ELK运行环境</h2><p><strong>ElasticSearch、Logstash、Kibana</strong>  </p>
+<img src="/2023/02/10/SpringBoot/SpringBoot-chapter7/%E5%9B%BE7-1.png" class="">
+<h2 id="Spring-Boot整合ELK平台"><a href="#Spring-Boot整合ELK平台" class="headerlink" title="Spring Boot整合ELK平台"></a>Spring Boot整合ELK平台</h2><p>Spring Boot向ELK输出日志<br>在Kibana中观察日志<br>项目产生的日志经过LogStash和ElasticSearch组件，最终展示在Kibana可视化界面上</p>
+<img src="/2023/02/10/SpringBoot/SpringBoot-chapter7/%E5%9B%BE7-2.png" class="">
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <!-- <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span> -->
+        Created By <a target="_blank" rel="noopener" href="https://github.com/liuxingjian/">流星剑</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>

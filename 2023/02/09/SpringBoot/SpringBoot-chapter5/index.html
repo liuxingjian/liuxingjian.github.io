@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="Sciwee">
+    <meta property="og:type" content="website">
+    <meta name="description" content="Sciwee">
+    <meta name="keyword"  content="hexo,Sciwee,Love Code,Java,Aircloud">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        SpringBoot-chapter5 - Sciwee
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Love Code </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Sciwee</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <!-- <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li> -->
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B%E4%B8%8E%E8%BF%87%E6%BB%A4%E5%99%A8%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="toc-text">面向切面编程与过滤器拦截器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="toc-text">相关概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBoot%E4%B8%8E%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="toc-text">SpringBoot与拦截器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E9%87%8D%E8%A6%81%E6%96%B9%E6%B3%95"><span class="toc-text">拦截器的重要方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBoot%E4%B8%8E%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-text">SpringBoot与过滤器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E9%87%8D%E8%A6%81%E6%96%B9%E6%B3%95"><span class="toc-text">过滤器的重要方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E6%BB%A4%E5%99%A8%E5%92%8C%E6%8B%A6%E6%88%AA%E5%99%A8%E7%9A%84%E5%BC%82%E5%90%8C%E7%82%B9"><span class="toc-text">过滤器和拦截器的异同点</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Love Code </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        SpringBoot-chapter5
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2023-02-09 20:09:55</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#SpringBoot" title="SpringBoot">SpringBoot</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="面向切面编程与过滤器拦截器"><a href="#面向切面编程与过滤器拦截器" class="headerlink" title="面向切面编程与过滤器拦截器"></a>面向切面编程与过滤器拦截器</h1><span id="more"></span>
+<h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><ul>
+<li>切面是指待插入的逻辑代码</li>
+<li>切入点是指在哪个位置插入切面代码</li>
+<li>通知是指在正常代码运行到切入点的位置时，Spring容器等会通知切面代码运行</li>
+<li>常用的通知类型有：前置<del>，后置</del>，环绕<del>，后置成功</del>，后置异常~</li>
+<li>定义切入点@pointcut</li>
+</ul>
+<h2 id="SpringBoot与拦截器"><a href="#SpringBoot与拦截器" class="headerlink" title="SpringBoot与拦截器"></a>SpringBoot与拦截器</h2><h3 id="拦截器的重要方法"><a href="#拦截器的重要方法" class="headerlink" title="拦截器的重要方法"></a>拦截器的重要方法</h3><ul>
+<li>preHandle 返回true执行下个拦截器，返回false执行被拦截</li>
+<li>postHandle void</li>
+<li>afterCompletion void</li>
+</ul>
+<h2 id="SpringBoot与过滤器"><a href="#SpringBoot与过滤器" class="headerlink" title="SpringBoot与过滤器"></a>SpringBoot与过滤器</h2><h3 id="过滤器的重要方法"><a href="#过滤器的重要方法" class="headerlink" title="过滤器的重要方法"></a>过滤器的重要方法</h3><ul>
+<li>init</li>
+<li>doFilter</li>
+<li>destroy</li>
+</ul>
+<h2 id="过滤器和拦截器的异同点"><a href="#过滤器和拦截器的异同点" class="headerlink" title="过滤器和拦截器的异同点"></a>过滤器和拦截器的异同点</h2><ol>
+<li>拦截器基于Java反射机制，过滤器基于函数回调机制</li>
+<li>定于拦截器依赖Servlet容器，过滤器不需要</li>
+<li>对于不同的请求拦截器可以初始化多次，过滤器只能只能在容器初始化时被执行一次</li>
+<li>拦截器可以获取Spring容器中的Bean，过滤器不行<br><strong>如果只想过滤具有指定特征的URL请求或者session中不包含指定对象的请求可以使用过滤器，如果想在请求被处理前添加通用性的动作，比如打印日志或者监控内存等，可以使用拦截器。</strong></li>
+</ol>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <!-- <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span> -->
+        Created By <a target="_blank" rel="noopener" href="https://github.com/liuxingjian/">流星剑</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>

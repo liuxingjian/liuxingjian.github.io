@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="Sciwee">
+    <meta property="og:type" content="website">
+    <meta name="description" content="Sciwee">
+    <meta name="keyword"  content="hexo,Sciwee,Love Code,Java,Aircloud">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        SpringBoot-chapter11 - Sciwee
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Love Code </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Sciwee</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <!-- <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li> -->
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringBoot%E6%95%B4%E5%90%88Redis%E7%BC%93%E5%AD%98"><span class="toc-text">SpringBoot整合Redis缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%86%E8%A7%A3redis"><span class="toc-text">了解redis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">Redis常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#set%E5%92%8Cget"><span class="toc-text">set和get</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#del%E5%91%BD%E4%BB%A4"><span class="toc-text">del命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exits%E5%91%BD%E4%BB%A4"><span class="toc-text">exits命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">Redis基本数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B"><span class="toc-text">字符串类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash%E7%B1%BB%E5%9E%8B"><span class="toc-text">Hash类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E7%B1%BB%E5%9E%8B"><span class="toc-text">列表类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-text">集合类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-text">有序集合类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBoot%E6%95%B4%E5%90%88%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%8ERedis%E7%BC%93%E5%AD%98"><span class="toc-text">SpringBoot整合数据库与Redis缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B2%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">防缓存穿透的设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B2%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">防内存溢出的设计</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Love Code </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        SpringBoot-chapter11
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2023-02-26 16:14:10</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#SpringBoot" title="SpringBoot">SpringBoot</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="SpringBoot整合Redis缓存"><a href="#SpringBoot整合Redis缓存" class="headerlink" title="SpringBoot整合Redis缓存"></a>SpringBoot整合Redis缓存</h1><span id="more"></span>
+<h2 id="了解redis"><a href="#了解redis" class="headerlink" title="了解redis"></a>了解redis</h2><p>Redis是一种用键值对格式存储数据的NoSQL数据库，由于Redis数据库是在内存中缓存数据的，因此他的读写性能很高<br><strong>优点:</strong></p>
+<ol>
+<li>读写数据的性能较高</li>
+<li>支持多种数据类型</li>
+<li>支持数据持久化</li>
+</ol>
+<p><strong>缺点</strong>  </p>
+<ol>
+<li>较难支持扩容操作</li>
+<li>数据过多时造成内存问题</li>
+<li>基于单线程操作，持久化等操作时会阻塞工作线程</li>
+</ol>
+<h2 id="Redis常用命令"><a href="#Redis常用命令" class="headerlink" title="Redis常用命令"></a>Redis常用命令</h2><h3 id="set和get"><a href="#set和get" class="headerlink" title="set和get"></a>set和get</h3><p>set key value [ex seconds][PX milliseconds] [NX|XX]  </p>
+<pre><code>set student_001 perter EX 3600
+get student_001
+</code></pre>
+<h3 id="del命令"><a href="#del命令" class="headerlink" title="del命令"></a>del命令</h3><pre><code>del student_001
+</code></pre>
+<h3 id="exits命令"><a href="#exits命令" class="headerlink" title="exits命令"></a>exits命令</h3><p>判断指定的键是否存在</p>
+<pre><code>exists student_001
+</code></pre>
+<h2 id="Redis基本数据类型"><a href="#Redis基本数据类型" class="headerlink" title="Redis基本数据类型"></a>Redis基本数据类型</h2><h3 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h3><p>mset和mget命令同时设置和读取多个字符串类型的数据</p>
+<pre><code>mset key value [key velue...]
+mget key [key...]
+</code></pre>
+<h3 id="Hash类型"><a href="#Hash类型" class="headerlink" title="Hash类型"></a>Hash类型</h3><p>Redis中通过Hash类型的变量来缓存对象数据</p>
+<pre><code>hset key field value
+hget key field
+</code></pre>
+<h3 id="列表类型"><a href="#列表类型" class="headerlink" title="列表类型"></a>列表类型</h3><p>在Redis中，可以用列表的形式在一个健中存储一个或多个数据。具体可以通过lpush命令把一个和多个值依次插入列表的头部<br>通过index命令可以读取列表格式的值，其中通过key参数能指定待读取的列表，通过index能指定待读取列表值的索引号，从0开始##</p>
+<pre><code>lpush key element [element...]
+lindex key index
+</code></pre>
+<h3 id="集合类型"><a href="#集合类型" class="headerlink" title="集合类型"></a>集合类型</h3><p>和列表相似，但是不能重复</p>
+<pre><code>sadd key member [member ...]
+smember key
+</code></pre>
+<h3 id="有序集合类型"><a href="#有序集合类型" class="headerlink" title="有序集合类型"></a>有序集合类型</h3><p>和集合相似，不过在有序集合中，每个元素都会对应一个score参数，依此来描述该数据在有序集合中的分数，并且该分数是有序集合中排序的基础<br>NX参数表示只有当key对应的有序集合不存在时才能添加元素，而XX参数表示当有序集合存在时才能添加元素<br>通过zrange命令能读取指定key中score区间范围内的数据，其中start和stop表示最低和最高的score，如果带WITHSCORES参数，则会同时显示元素所对应的score值</p>
+<pre><code>zadd key [NX&#125;XX] [CH] [INCR] score member [score member ...]
+zrange key start stop [WITHSCORES]
+</code></pre>
+<h2 id="SpringBoot整合数据库与Redis缓存"><a href="#SpringBoot整合数据库与Redis缓存" class="headerlink" title="SpringBoot整合数据库与Redis缓存"></a>SpringBoot整合数据库与Redis缓存</h2><p>在数据库整合Redis缓存时，应用程序会先从Redis服务器中读取数据，如果读到则直接使用，否则访问数据库，同时把从数据库中读到的数据放入缓存<br>在删除数据时，会在删除数据库中数据的同时删除缓存中的数据，更新时，首先删除缓存数据，在更新数据库数据</p>
+<img src="/2023/02/26/SpringBoot/SpringBoot-chapter11/%E5%9B%BE11-1.png" class="">
+<h3 id="防缓存穿透的设计"><a href="#防缓存穿透的设计" class="headerlink" title="防缓存穿透的设计"></a>防缓存穿透的设计</h3><p>如果在高并发的场景中，大量的查询请求会“穿透Redis缓存”，如果并发量超过了数据库的负载，数据库就会无法继续接受请求，从而造成严重的产线问题。<br>防穿透的做法是，缓存null值和数据库不存在的健，这些请求会被Redis挡住，就不会再到数据库中查询一遍。</p>
+<h3 id="防内存溢出的设计"><a href="#防内存溢出的设计" class="headerlink" title="防内存溢出的设计"></a>防内存溢出的设计</h3><p>如果不设置超时时间，每次的缓存数据就会一直保存在内存中，时间长了，就会导致内存溢出问题。<br>可以在缓存数据时为每个数据设置一个合理的超时时间。<br>采用整数加随机数的方式，从而在避免内存溢出的同时，也能避免缓存穿透问题</p>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <!-- <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span> -->
+        Created By <a target="_blank" rel="noopener" href="https://github.com/liuxingjian/">流星剑</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>

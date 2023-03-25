@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="Sciwee">
+    <meta property="og:type" content="website">
+    <meta name="description" content="Sciwee">
+    <meta name="keyword"  content="hexo,Sciwee,Love Code,Java,Aircloud">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        SpringBoot-chapter14 - Sciwee
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> Love Code </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Sciwee</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <!-- <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li> -->
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringBoot%E6%95%B4%E5%90%88RabbitMQ%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-text">SpringBoot整合RabbitMQ消息中间件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%92%8CRabbitMQ%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-text">消息队列和RabbitMQ消息中间件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E4%BA%A4%E6%8D%A2%E6%9C%BA%E4%B8%8E%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="toc-text">消息交换机与消息队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBoot%E6%95%B4%E5%90%88RabbitMQ"><span class="toc-text">SpringBoot整合RabbitMQ</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8RabbitMQ%E6%90%AD%E5%BB%BA%E5%BC%82%E6%AD%A5%E4%BA%A4%E4%BA%92%E7%B3%BB%E7%BB%9F"><span class="toc-text">用RabbitMQ搭建异步交互系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%82%E5%AF%9F%E5%BC%82%E6%AD%A5%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B"><span class="toc-text">观察异步交互流程</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> Love Code </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        SpringBoot-chapter14
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2023-03-17 20:46:18</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#SpringBoot" title="SpringBoot">SpringBoot</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="SpringBoot整合RabbitMQ消息中间件"><a href="#SpringBoot整合RabbitMQ消息中间件" class="headerlink" title="SpringBoot整合RabbitMQ消息中间件"></a>SpringBoot整合RabbitMQ消息中间件</h1><span id="more"></span>
+<p>RabbitMQ是实现了高级消息队列协议（AMQP)(advanced massage queuing protocol)的消息中间件，通过它可以在模块间构建可靠的消息传输队列，以实现模块间的有效交互。<br>RabbitMQ是用Erlang语言开发的消息中间件，可以实现解耦模块间复杂业务逻辑和高并发缓存等高级业务功能</p>
+<h2 id="消息队列和RabbitMQ消息中间件"><a href="#消息队列和RabbitMQ消息中间件" class="headerlink" title="消息队列和RabbitMQ消息中间件"></a>消息队列和RabbitMQ消息中间件</h2><p>消息队列是消息中间件的内部队列，可以用来存储消息。而消息中间件是和业务无关的，用来存储和传递消息的第三方组件，在消息中间件中，除了会有消息队列以外，还会封装针对消息以及消息队列的操作方法，比如发送消息，订阅消息和持久化消息</p>
+<img src="/2023/03/17/SpringBoot/SpringBoot-chapter14/%E5%9B%BE14-1.png" class="">
+
+<h2 id="消息交换机与消息队列"><a href="#消息交换机与消息队列" class="headerlink" title="消息交换机与消息队列"></a>消息交换机与消息队列</h2><p>一个RabbitMQ消息中间件中可以有多个消息对列，分别用来存储不同主题的消息</p>
+<img src="/2023/03/17/SpringBoot/SpringBoot-chapter14/%E5%9B%BE14-2.png" class="">
+<h2 id="SpringBoot整合RabbitMQ"><a href="#SpringBoot整合RabbitMQ" class="headerlink" title="SpringBoot整合RabbitMQ"></a>SpringBoot整合RabbitMQ</h2><img src="/2023/03/17/SpringBoot/SpringBoot-chapter14/%E5%9B%BE14-3.png" class="">
+
+<h2 id="用RabbitMQ搭建异步交互系统"><a href="#用RabbitMQ搭建异步交互系统" class="headerlink" title="用RabbitMQ搭建异步交互系统"></a>用RabbitMQ搭建异步交互系统</h2><p>由于RabbitMQ消息中间件能在模块间传递消息，因此项目中的诸多业务模块可以用该组件搭建异步交互系统。引入异步交互机制的目的不仅是为了进一步解耦诸多业务模块，更是为了能够在高并发场景中提升相关业务模块的运行性能。</p>
+<img src="/2023/03/17/SpringBoot/SpringBoot-chapter14/%E5%9B%BE14-4.png" class="">
+
+<h3 id="观察异步交互流程"><a href="#观察异步交互流程" class="headerlink" title="观察异步交互流程"></a>观察异步交互流程</h3><img src="/2023/03/17/SpringBoot/SpringBoot-chapter14/%E5%9B%BE14-5.png" class="">
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <!-- <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span> -->
+        Created By <a target="_blank" rel="noopener" href="https://github.com/liuxingjian/">流星剑</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>
