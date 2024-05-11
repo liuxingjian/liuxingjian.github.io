@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatBot</title>
+    <style>
+        body {
+            background: #f9f9f9;
+            /* 替换为您想要的背景颜色或图片 */
+        }
+
+        .chat-bot {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 800px;
+            margin: 50px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            font-family: "Roboto", sans-serif;
+            background: #f5f5f5;
+        }
+
+        .chat-bot-header {
+            background: linear-gradient(to right, #1791ee, #9fdbf1);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        .chat-bot-messages {
+            flex: 1;
+            padding: 20px;
+            min-height: 400px;
+            overflow-y: auto;
+        }
+
+        .userName {
+            margin: 0 10px;
+        }
+
+        .message-wrapper {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            border-radius: 20px;
+        }
+
+        .message-wrapper.user {
+            justify-content: flex-end;
+            border-radius: 20px;
+        }
+
+        .message-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #ccc;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            /* 添加这一行 */
+            order: -1;
+            /* 添加这一行 */
+            text-align: right;
+        }
+
+        .message-avatar.user {
+            background-color: transparent;
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+            margin-right: 0;
+            align-items: center;
+        }
+
+        .message-avatar.bot {
+            background-color: transparent;
+            display: flex;
+            justify-content: flex-start;
+            width: 100%;
+            margin-right: 0;
+            align-items: center;
+        }
+
+        .message-avatar-inner.user {
+            background-image: url("./cat.jpg");
+            background-size: cover;
+            background-position: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        .message-avatar-inner.bot {
+            background-image: url("./logo.png");
+            background-size: cover;
+            background-position: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        .message {
+            padding: 10px 20px;
+            border-radius: 15px;
+            font-size: 16px;
+            background-color: #d9edf7;
+            order: 1;
+            /* 添加这一行 */
+        }
+
+        .bot {
+            background-color: #e9eff5;
+            /* 添加这一行 */
+        }
+
+        .user {
+            background-color: #d9edf7;
+            color: #111111;
+            order: 1;
+            /* 添加这一行 */
+        }
+
+        .chat-bot-input {
+            display: flex;
+            align-items: center;
+            border-top: 1px solid #ccc;
+            padding: 10px;
+            background-color: #fff;
+        }
+
+        .chat-bot-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .chat-bot-input button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .chat-bot-input button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .chat-bot {
+                margin: 20px;
+            }
+
+            .chat-bot-header {
+                font-size: 20px;
+            }
+
+            .message {
+                font-size: 14px;
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-spinner {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 2px solid #d9edf7;
+            border-top-color: transparent;
+            animation: spin 1s infinite linear;
+        }
+    </style>
+</head>
+<body>
+<div class="chat-bot">
+    <div class="chat-bot-header">
+        <img src="./logo.png" alt="Logo" class="logo" />
+        通义千问
+    </div>
+    <div class="chat-bot-messages"></div>
+    <div class="chat-bot-input">
+        <input type="text" placeholder="输入你想问的问题" />
+        <button id="sendButton">Send</button>
+    </div>
+</div>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.2/markdown-it.min.js"
+        integrity="sha512-ohlWmsCxOu0bph1om5eDL0jm/83eH09fvqLDhiEdiqfDeJbEvz4FSbeY0gLJSVJwQAp0laRhTXbUQG+ZUuifUQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+></script>
+<script>
+    const userName = "summo";
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const input = document.querySelector(".chat-bot-input input");
+        const messagesContainer = document.querySelector(".chat-bot-messages");
+        const sendButton = document.getElementById("sendButton");
+
+        function appendToMessage(messageTxt, sender, md, message) {
+            let messageElement = messagesContainer.querySelector(
+                `.message-wrapper.${sender}:last-child .message`
+            );
+
+            if (!messageElement) {
+                if (sender === "bot") {
+                    messageElement = document.createElement("div");
+                    messageElement.classList.add("message-avatar", sender);
+                    messageElement.innerHTML = `<div class="message-avatar-inner ${sender}"></div><div class="userName">通义千问</div>`;
+                    messagesContainer.appendChild(messageElement);
+                } else {
+                    messageElement = document.createElement("div");
+                    messageElement.classList.add("message-avatar", sender);
+                    messageElement.innerHTML = `<div class="message-avatar-inner ${sender}"></div><div class="userName"">${userName}</div>`;
+                    messagesContainer.appendChild(messageElement);
+                }
+                messageElement = document.createElement("div");
+                messageElement.classList.add("message-wrapper", sender);
+                messageElement.innerHTML = `<div class="message ${sender}"></div>`;
+                messagesContainer.appendChild(messageElement);
+
+                messageElement = messageElement.querySelector(".message");
+            }
+            // messageElement.textContent += messageTxt; // 追加文本
+            // messagesContainer.scrollTop = messagesContainer.scrollHeight; // 滚动到底部
+            let result = (message += messageTxt);
+            const html = md.renderInline(messageTxt);
+            messageElement.innerHTML += html;
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function handleSend() {
+            const inputValue = input.value.trim();
+            if (inputValue) {
+                input.disabled = true;
+                sendButton.disabled = true;
+                sendButton.innerHTML = '<div class="loading-spinner"></div>';
+                const md = new markdownit();
+                // 修改按钮文本内容为"Loading..."
+                let message = "";
+                appendToMessage(inputValue, "user", md, message);
+                input.value = "";
+                const eventSource = new EventSource(
+                    `http://localhost:8080/events/streamAsk?q=${encodeURIComponent(
+                        inputValue
+                    )}`
+                );
+                eventSource.onmessage = function (event) {
+                    console.log(event.data);
+                    appendToMessage(event.data, "bot", md, message);
+                };
+                eventSource.onerror = function () {
+                    eventSource.close();
+                    input.disabled = false;
+                    sendButton.disabled = false;
+                    sendButton.innerHTML = "Send";
+                };
+            }
+        }
+
+        document
+            .querySelector(".chat-bot-input button")
+            .addEventListener("click", handleSend);
+        input.addEventListener("input", function () {
+            sendButton.disabled = input.value.trim() === "";
+        });
+
+        input.addEventListener("keypress", function (event) {
+            if (event.key === "Enter" && !sendButton.disabled) {
+                handleSend();
+            }
+        });
+    });
+</script>
+</body>
+</html>
+
